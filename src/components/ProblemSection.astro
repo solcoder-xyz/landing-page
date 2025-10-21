@@ -1,0 +1,137 @@
+---
+// Problem Section - Old Way vs SolCoder Way
+---
+
+<section class="section-container" id="problem">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Title -->
+    <div class="text-center mb-16 scroll-animate">
+      <h2 class="gradient-text mb-4">The Problem</h2>
+      <p class="text-xl text-slate-secondary">Why building on Solana is so painful...</p>
+    </div>
+
+    <!-- Split Comparison -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <!-- Old Way (Left) -->
+      <div class="scroll-animate delay-200">
+        <div class="terminal-window border-pink-error/30 hover:border-pink-error transition-colors">
+          <div class="terminal-header bg-pink-error/10 border-pink-error/30">
+            <div class="terminal-button terminal-button-red"></div>
+            <div class="terminal-button terminal-button-yellow"></div>
+            <div class="terminal-button terminal-button-green"></div>
+            <span class="ml-4 text-pink-error/70 text-sm font-mono">❌ The Old Way</span>
+          </div>
+          <div class="terminal-content space-y-3 text-sm">
+            <div class="text-slate-tertiary">
+              <span class="text-pink-error font-bold">Week 1:</span> Install Rust, Solana CLI,
+              Anchor, Node, and pray
+            </div>
+            <div class="text-slate-tertiary">
+              <span class="text-pink-error font-bold">Week 2:</span> Read 47 Medium tutorials (all
+              outdated)
+            </div>
+            <div class="text-slate-tertiary">
+              <span class="text-pink-error font-bold">Week 3:</span> Debug "account not initialized"
+              errors
+            </div>
+            <div class="text-slate-tertiary">
+              <span class="text-pink-error font-bold">Week 4:</span> Finally deploy... to localhost
+            </div>
+            <div class="text-slate-tertiary">
+              <span class="text-pink-error font-bold">Week 5:</span> Give up, hire $200/hr
+              consultant
+            </div>
+
+            <div class="ascii-divider text-pink-error/30 mt-6">
+              ════════════════════════════════════════
+            </div>
+
+            <div class="flex items-center gap-2 text-pink-error pt-2">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-bold">Result: Burnout & frustration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SolCoder Way (Right) -->
+      <div class="scroll-animate delay-300">
+        <div class="terminal-window hover:shadow-terminal-glow transition-shadow">
+          <div class="terminal-header">
+            <div class="terminal-button terminal-button-red"></div>
+            <div class="terminal-button terminal-button-yellow"></div>
+            <div class="terminal-button terminal-button-green"></div>
+            <span class="ml-4 text-solana-green/70 text-sm font-mono">✓ The SolCoder Way</span>
+          </div>
+          <div class="terminal-content space-y-3 text-sm">
+            <div>
+              <span class="text-amber-warn font-bold">Minute 1:</span>
+              <span class="text-slate-primary">$ solcoder</span>
+            </div>
+            <div>
+              <span class="text-amber-warn font-bold">Minute 2:</span>
+              <span class="text-solana-green">> "Create an NFT mint with metadata"</span>
+            </div>
+            <div>
+              <span class="text-amber-warn font-bold">Minute 3:</span>
+              <span class="terminal-success">Deployed to devnet</span>
+            </div>
+            <div>
+              <span class="text-amber-warn font-bold">Minute 4:</span>
+              <span class="text-slate-primary">Ship to production</span>
+            </div>
+
+            <div class="ascii-divider text-solana-green/30 mt-6">
+              ════════════════════════════════════════
+            </div>
+
+            <div class="flex items-center gap-2 text-solana-green pt-2">
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-bold">You're a Solana developer now.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Boxes -->
+    <div class="grid sm:grid-cols-3 gap-6 scroll-animate delay-400">
+      <div class="stat-box hover-lift">
+        <div class="stat-value">95%</div>
+        <div class="stat-label">Less Code</div>
+      </div>
+      <div class="stat-box hover-lift delay-100">
+        <div class="stat-value">60 sec</div>
+        <div class="stat-label">First Deploy</div>
+      </div>
+      <div class="stat-box hover-lift delay-200">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Setup Cost</div>
+      </div>
+    </div>
+  </div>
+</section>

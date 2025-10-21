@@ -1,0 +1,184 @@
+---
+// Navigation Component - Sticky header with section links
+---
+
+<nav class="sticky top-0 z-50 bg-deep-space/95 backdrop-blur-sm border-b border-solana-green/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo / Brand -->
+      <a href="#hero" class="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+        <div class="w-8 h-8 rounded bg-gradient-hero flex items-center justify-center font-mono font-bold text-deep-space">
+          SC
+        </div>
+        <span class="font-mono font-bold text-lg gradient-text hidden sm:inline">SolCoder</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-1">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#problem" class="nav-link">Problem</a>
+        <a href="#vision" class="nav-link">Vision</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#demo" class="nav-link">Demo</a>
+        <a href="#community" class="nav-link">Community</a>
+        <a href="#contribute" class="nav-link">Contribute</a>
+        <a href="#getting-started" class="nav-link-cta">Get Started</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden p-2 rounded-lg border border-solana-green/30 hover:border-solana-green transition-colors focus-visible-ring"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <svg
+          id="menu-icon"
+          class="w-6 h-6 text-solana-green"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          class="w-6 h-6 text-solana-green hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="md:hidden hidden pb-4">
+      <div class="flex flex-col gap-2">
+        <a href="#hero" class="mobile-nav-link">🏠 Home</a>
+        <a href="#problem" class="mobile-nav-link">❌ Problem</a>
+        <a href="#vision" class="mobile-nav-link">🔮 Vision</a>
+        <a href="#features" class="mobile-nav-link">⚡ Features</a>
+        <a href="#demo" class="mobile-nav-link">🎮 Demo</a>
+        <a href="#community" class="mobile-nav-link">👥 Community</a>
+        <a href="#contribute" class="mobile-nav-link">🤝 Contribute</a>
+        <a href="#getting-started" class="mobile-nav-link-cta">🚀 Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Desktop Navigation Links */
+  .nav-link {
+    @apply px-4 py-2 font-mono text-sm text-slate-secondary hover:text-solana-green transition-colors rounded-lg hover:bg-solana-green/10;
+  }
+
+  .nav-link-cta {
+    @apply px-6 py-2 font-mono text-sm font-bold bg-gradient-hero text-deep-space rounded-lg hover:shadow-purple-glow transition-all hover:scale-105;
+  }
+
+  /* Mobile Navigation Links */
+  .mobile-nav-link {
+    @apply px-4 py-3 font-mono text-sm text-slate-secondary hover:text-solana-green transition-colors rounded-lg hover:bg-solana-green/10 border border-solana-green/20 hover:border-solana-green;
+  }
+
+  .mobile-nav-link-cta {
+    @apply px-6 py-3 font-mono text-sm font-bold bg-gradient-hero text-deep-space rounded-lg hover:shadow-purple-glow transition-all text-center;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (!menuButton || !mobileMenu || !menuIcon || !closeIcon) return;
+
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+      // Toggle menu visibility
+      if (isExpanded) {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        menuButton.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Close menu when clicking a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      if (
+        !menuButton.contains(target) &&
+        !mobileMenu.contains(target) &&
+        !mobileMenu.classList.contains('hidden')
+      ) {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Active section highlighting
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+    const highlightActiveSection = () => {
+      let currentSection = '';
+
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= 100 && sectionTop >= -section.clientHeight + 100) {
+          currentSection = section.getAttribute('id') || '';
+        }
+      });
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSection}`) {
+          link.classList.add('text-solana-green', 'bg-solana-green/10');
+        } else {
+          link.classList.remove('text-solana-green', 'bg-solana-green/10');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', highlightActiveSection);
+    highlightActiveSection(); // Initial check
+  });
+</script>

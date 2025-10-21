@@ -1,0 +1,235 @@
+---
+// Feature Grid - 9 Key Features
+---
+
+<section class="section-container" id="features">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16 scroll-animate">
+      <div class="ascii-divider text-center mb-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+      <h2 class="text-3xl md:text-4xl font-mono font-bold text-solana-green mb-4">
+        How SolCoder Works
+      </h2>
+      <div class="ascii-divider text-center mt-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+    </div>
+
+    <!-- Feature Grid (3x3) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Feature 1: Conversational Interface -->
+      <div class="feature-card scroll-animate delay-100">
+        <div class="text-4xl mb-4">🗣️</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Conversational Interface</h3>
+        <p class="text-slate-secondary mb-4">
+          Describe your dApp in plain English. SolCoder translates to Anchor programs + tests.
+        </p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Example:</div>
+          <div class="pl-4">> "Build a token staking pool</div>
+          <div class="pl-6">with 7-day lockup"</div>
+          <div class="mt-2 space-y-1">
+            <div class="terminal-success text-xs">Counter.rs generated</div>
+            <div class="terminal-success text-xs">Tests written</div>
+            <div class="terminal-success text-xs">Client stub created</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Built-In Wallet Security -->
+      <div class="feature-card scroll-animate delay-200">
+        <div class="text-4xl mb-4">🔐</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Built-In Wallet Security</h3>
+        <p class="text-slate-secondary mb-4">
+          PBKDF2 + AES-GCM encrypted keypairs. Auto devnet airdrops. Spend policies prevent
+          mistakes.
+        </p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Features:</div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Session budget caps</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Confirmation prompts</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Audit trail logging</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>└─</span>
+            <span>100% overspend prevention</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Offline Solana Expertise -->
+      <div class="feature-card scroll-animate delay-300">
+        <div class="text-4xl mb-4">📚</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Offline Solana Expertise</h3>
+        <p class="text-slate-secondary mb-4">
+          Embedded knowledge base with Anchor patterns, SPL standards, Solana runtime docs, Rust
+          tips.
+        </p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Powered by:</div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>FAISS semantic search</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Zero external API calls</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Citation tracking</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>└─</span>
+            <span>Context injection per turn</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: Lightning-Fast Deploy -->
+      <div class="feature-card scroll-animate delay-400">
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Lightning-Fast Deploy</h3>
+        <p class="text-slate-secondary mb-4">
+          One command from scaffold to live devnet program. Automated build + deploy + Explorer
+          link.
+        </p>
+        <div class="terminal-window text-xs">
+          <div class="terminal-content space-y-1">
+            <div class="text-slate-secondary">$ solcoder</div>
+            <div class="text-solana-green">> /new "NFT marketplace"</div>
+            <div class="text-solana-green">> /deploy</div>
+            <div class="terminal-success text-xs">Program ID: 8xQz...</div>
+            <div class="terminal-success text-xs">Explorer: solscan.io/...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 5: Zero-Setup Onboarding -->
+      <div class="feature-card scroll-animate delay-500">
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Zero-Setup Onboarding</h3>
+        <p class="text-slate-secondary mb-4">
+          Missing Rust? Anchor? Node.js? SolCoder detects and installs everything with guided
+          prompts.
+        </p>
+        <div class="terminal-window text-xs">
+          <div class="terminal-content space-y-1">
+            <div class="text-solana-green">> /env diag</div>
+            <div class="terminal-error text-xs">Rust not found</div>
+            <div class="text-solana-green">> /env install rust</div>
+            <div class="terminal-success text-xs">rustup installed</div>
+            <div class="terminal-success text-xs">solana-cli ready</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 6: Test-Driven by Default -->
+      <div class="feature-card scroll-animate delay-600">
+        <div class="text-4xl mb-4">🧪</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Test-Driven by Default</h3>
+        <p class="text-slate-secondary mb-4">Every scaffold includes full test suite, client stubs, README, and CI/CD templates.</p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Includes:</div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Full test suite</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Client interaction stubs</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>README with examples</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>└─</span>
+            <span>80%+ coverage guaranteed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 7: Reusable Templates -->
+      <div class="feature-card scroll-animate delay-700">
+        <div class="text-4xl mb-4">🔧</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Reusable Templates</h3>
+        <p class="text-slate-secondary mb-4">
+          Start with battle-tested blueprints. Clone, customize, deploy.
+        </p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Available:</div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Counter (signed integer)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>NFT Mint (in progress)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span>Token Staking (planned)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>└─</span>
+            <span>DAO Voting (planned)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 8: Session Persistence -->
+      <div class="feature-card scroll-animate delay-800">
+        <div class="text-4xl mb-4">📊</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Session Persistence</h3>
+        <p class="text-slate-secondary mb-4">Resume work anytime. Export transcripts. Never lose context.</p>
+        <div class="terminal-window text-xs">
+          <div class="terminal-content space-y-1">
+            <div class="text-slate-secondary">
+              $ solcoder --session abc123
+            </div>
+            <div class="terminal-success text-xs">Session restored</div>
+            <div class="text-slate-secondary mt-2">
+              $ solcoder --dump-session
+            </div>
+            <div class="terminal-success text-xs">Exported to transcript.json</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 9: Tool Safety Controls -->
+      <div class="feature-card scroll-animate delay-900">
+        <div class="text-4xl mb-4">🛡️</div>
+        <h3 class="text-xl font-mono text-solana-purple mb-3">Tool Safety Controls</h3>
+        <p class="text-slate-secondary mb-4">
+          Fine-grained policies. You control the autonomy level. SolCoder adapts to your trust.
+        </p>
+        <div class="font-mono text-sm space-y-1 text-slate-tertiary">
+          <div class="text-solana-green">Policies:</div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span><span class="text-solana-green">Allow</span> (auto-execute)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>├─</span>
+            <span><span class="text-amber-warn">Confirm</span> (prompt first)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span>└─</span>
+            <span><span class="text-pink-error">Deny</span> (block entirely)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

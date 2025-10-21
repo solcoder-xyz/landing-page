@@ -1,0 +1,251 @@
+---
+// Interactive Terminal Demo - Client-side simulation
+---
+
+<section class="section-container" id="demo">
+  <div class="max-w-5xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16 scroll-animate">
+      <div class="ascii-divider text-center mb-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+      <h2 class="text-3xl md:text-4xl font-mono font-bold text-solana-green mb-4">
+        Try It Now (Simulated)
+      </h2>
+      <div class="ascii-divider text-center mt-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+      <p class="text-slate-secondary mt-4">
+        Click an example prompt below to see SolCoder in action
+      </p>
+    </div>
+
+    <!-- Interactive Terminal -->
+    <div class="terminal-window crt-effect flicker-effect scroll-animate delay-200">
+      <div class="terminal-header">
+        <div class="terminal-button terminal-button-red"></div>
+        <div class="terminal-button terminal-button-yellow"></div>
+        <div class="terminal-button terminal-button-green"></div>
+        <span class="ml-4 text-solana-green/70 text-sm">solcoder@devnet ~ %</span>
+      </div>
+
+      <div class="terminal-content">
+        <!-- Terminal Output -->
+        <div id="demo-output" class="space-y-2 mb-4 min-h-[200px]">
+          <!-- Initial state -->
+          <div class="text-solana-green">$ solcoder</div>
+          <div class="text-slate-secondary mt-4">
+            <pre
+              class="text-[8px] leading-tight text-solana-green/50"
+            > @@@@@@    @@@@@@   @@@        @@@@@@@   @@@@@@   @@@@@@@
+!@@       @@!  @@@  @@!       !@@       @@!  @@@  @@!  @@@</pre>
+          </div>
+          <div class="text-solana-green mt-4">
+            🟢 SolCoder: Hello! I can help you build on Solana.
+          </div>
+          <div class="text-solana-green">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What would you
+            like to create today?
+          </div>
+        </div>
+
+        <!-- User Input -->
+        <div class="flex items-center gap-2 font-mono">
+          <span class="text-solana-purple">🟣 You:</span>
+          <span id="demo-input" class="text-slate-primary"></span>
+          <span class="cursor-blink"></span>
+        </div>
+
+        <!-- Prompt -->
+        <div class="text-slate-tertiary text-xs mt-4 italic">
+          [Try typing or click an example below]
+        </div>
+      </div>
+    </div>
+
+    <!-- Example Prompts -->
+    <div class="mt-8 scroll-animate delay-400">
+      <div class="terminal-window">
+        <div class="terminal-header bg-solana-purple/10 border-solana-purple/30">
+          <span class="text-solana-purple font-mono text-sm">Example Prompts (Click to Try):</span>
+        </div>
+        <div class="terminal-content">
+          <div class="space-y-2">
+            <button
+              class="demo-prompt-btn w-full text-left px-4 py-3 rounded hover:bg-solana-purple/10 transition-colors border border-solana-green/20 hover:border-solana-green focus-visible-ring"
+              data-prompt="Create a token staking contract with 7-day lockup"
+            >
+              <span class="text-solana-green mr-2">›</span>
+              <span class="text-slate-primary font-mono text-sm"
+                >"Create a token staking contract with 7-day lockup"</span
+              >
+            </button>
+
+            <button
+              class="demo-prompt-btn w-full text-left px-4 py-3 rounded hover:bg-solana-purple/10 transition-colors border border-solana-green/20 hover:border-solana-green focus-visible-ring"
+              data-prompt="Build an NFT collection with on-chain metadata"
+            >
+              <span class="text-solana-green mr-2">›</span>
+              <span class="text-slate-primary font-mono text-sm"
+                >"Build an NFT collection with on-chain metadata"</span
+              >
+            </button>
+
+            <button
+              class="demo-prompt-btn w-full text-left px-4 py-3 rounded hover:bg-solana-purple/10 transition-colors border border-solana-green/20 hover:border-solana-green focus-visible-ring"
+              data-prompt="Make a DAO voting system with quadratic voting"
+            >
+              <span class="text-solana-green mr-2">›</span>
+              <span class="text-slate-primary font-mono text-sm"
+                >"Make a DAO voting system with quadratic voting"</span
+              >
+            </button>
+
+            <button
+              class="demo-prompt-btn w-full text-left px-4 py-3 rounded hover:bg-solana-purple/10 transition-colors border border-solana-green/20 hover:border-solana-green focus-visible-ring"
+              data-prompt="Deploy a simple escrow program for peer-to-peer NFTs"
+            >
+              <span class="text-solana-green mr-2">›</span>
+              <span class="text-slate-primary font-mono text-sm"
+                >"Deploy a simple escrow program for peer-to-peer NFTs"</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client-side Terminal Simulator Script -->
+<script>
+  const responses = {
+    'Create a token staking contract with 7-day lockup': [
+      { type: 'info', text: '✓ Analyzing requirements...' },
+      { type: 'info', text: '✓ Generating Anchor program structure...' },
+      { type: 'success', text: '✓ Created programs/staking/lib.rs' },
+      { type: 'success', text: '✓ Created programs/staking/state.rs' },
+      { type: 'success', text: '✓ Generated test suite in tests/staking.ts' },
+      { type: 'success', text: '✓ Created client stub in app/staking-client.ts' },
+      { type: 'info', text: '\n📦 Building program...' },
+      { type: 'success', text: '✓ Build complete: target/deploy/staking.so' },
+      {
+        type: 'success',
+        text: '✓ Deployed to devnet: Program ID: HbJw3m...k9qX',
+      },
+      { type: 'info', text: '🔗 View on Explorer: solscan.io/account/HbJw3m...k9qX' },
+      { type: 'success', text: '\n✨ Your staking contract is live! Total time: 42 seconds' },
+    ],
+    'Build an NFT collection with on-chain metadata': [
+      { type: 'info', text: '✓ Analyzing NFT requirements...' },
+      { type: 'info', text: '✓ Scaffolding Metaplex-compatible program...' },
+      { type: 'success', text: '✓ Created programs/nft_collection/lib.rs' },
+      { type: 'success', text: '✓ Set up metadata account structure' },
+      { type: 'success', text: '✓ Generated minting tests' },
+      { type: 'info', text: '\n📦 Building and deploying...' },
+      {
+        type: 'success',
+        text: '✓ Deployed to devnet: Program ID: 9vZ4m...p2Qx',
+      },
+      { type: 'success', text: '✨ NFT collection ready! Mint your first NFT with /mint' },
+    ],
+    'Make a DAO voting system with quadratic voting': [
+      { type: 'info', text: '✓ Setting up DAO governance structure...' },
+      { type: 'info', text: '✓ Implementing quadratic voting algorithm...' },
+      { type: 'success', text: '✓ Created programs/dao/lib.rs with voting logic' },
+      { type: 'success', text: '✓ Created programs/dao/quadratic.rs' },
+      { type: 'success', text: '✓ Generated proposal and vote tests' },
+      { type: 'info', text: '\n📦 Deploying governance program...' },
+      {
+        type: 'success',
+        text: '✓ Deployed to devnet: Program ID: DaO8x...v7Km',
+      },
+      { type: 'success', text: '✨ DAO is live! Create your first proposal with /propose' },
+    ],
+    'Deploy a simple escrow program for peer-to-peer NFTs': [
+      { type: 'info', text: '✓ Creating escrow program structure...' },
+      { type: 'success', text: '✓ Created programs/escrow/lib.rs' },
+      { type: 'success', text: '✓ Implemented initialize, exchange, and cancel instructions' },
+      { type: 'success', text: '✓ Generated comprehensive tests' },
+      { type: 'info', text: '\n📦 Building and deploying...' },
+      {
+        type: 'success',
+        text: '✓ Deployed to devnet: Program ID: Esc8w...n4Tx',
+      },
+      { type: 'success', text: '✨ Escrow ready! Users can now trade NFTs safely.' },
+    ],
+  };
+
+  async function typeText(element: HTMLElement, text: string, speed: number = 30) {
+    element.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      element.textContent += text[i];
+      await new Promise((resolve) => setTimeout(resolve, speed));
+    }
+  }
+
+  async function simulateResponse(prompt: string) {
+    const outputDiv = document.getElementById('demo-output');
+    const inputDiv = document.getElementById('demo-input');
+    if (!outputDiv || !inputDiv) return;
+
+    // Clear previous output except initial greeting
+    outputDiv.innerHTML = `
+      <div class="text-solana-green">$ solcoder</div>
+      <div class="text-slate-secondary mt-4">
+        <pre class="text-[8px] leading-tight text-solana-green/50"> @@@@@@    @@@@@@   @@@        @@@@@@@   @@@@@@   @@@@@@@
+!@@       @@!  @@@  @@!       !@@       @@!  @@@  @@!  @@@</pre>
+      </div>
+      <div class="text-solana-green mt-4">🟢 SolCoder: Hello! I can help you build on Solana.</div>
+      <div class="text-solana-green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What would you like to create today?</div>
+    `;
+
+    // Type the user prompt
+    await typeText(inputDiv, `"${prompt}"`, 20);
+
+    // Wait a bit
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Show responses
+    const promptResponses = responses[prompt as keyof typeof responses] || [];
+
+    for (const response of promptResponses) {
+      const div = document.createElement('div');
+      div.className = 'font-mono text-sm';
+
+      if (response.type === 'success') {
+        div.className += ' text-solana-green';
+      } else if (response.type === 'info') {
+        div.className += ' text-cyan-info';
+      } else {
+        div.className += ' text-slate-secondary';
+      }
+
+      outputDiv.appendChild(div);
+
+      await typeText(div, response.text, 10);
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+
+    // Final prompt
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    const finalDiv = document.createElement('div');
+    finalDiv.className = 'text-solana-green mt-4';
+    finalDiv.textContent =
+      '\n🟢 SolCoder: Done! What else would you like to build?';
+    outputDiv.appendChild(finalDiv);
+  }
+
+  // Add click handlers
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.demo-prompt-btn');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const prompt = button.getAttribute('data-prompt');
+        if (prompt) {
+          simulateResponse(prompt);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,207 @@
+/* Global styles for SolCoder Landing Page */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Reset & Base Styles */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
+  }
+
+  body {
+    @apply bg-deep-space text-slate-primary font-sans;
+    margin: 0;
+    padding: 0;
+    background-image: url('/noise-texture.png');
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono font-bold;
+    line-height: 1.2;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  p {
+    @apply text-slate-secondary leading-relaxed;
+    max-width: 65ch;
+  }
+
+  a {
+    @apply text-solana-green hover:text-cyan-info transition-colors duration-200;
+  }
+
+  code {
+    @apply font-mono text-sm bg-deep-space/50 px-1.5 py-0.5 rounded;
+  }
+
+  pre {
+    @apply font-mono text-sm bg-deep-space/80 p-4 rounded-lg overflow-x-auto;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  /* Gradient text effect */
+  .gradient-text {
+    @apply bg-gradient-hero bg-clip-text text-transparent;
+  }
+
+  /* Terminal window styling */
+  .terminal-window {
+    @apply bg-deep-space border border-solana-green/30 rounded-lg overflow-hidden shadow-terminal-glow;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .terminal-header {
+    @apply bg-solana-green/10 border-b border-solana-green/30 px-4 py-2 flex items-center gap-2;
+  }
+
+  .terminal-button {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-button-red {
+    @apply bg-pink-error;
+  }
+
+  .terminal-button-yellow {
+    @apply bg-amber-warn;
+  }
+
+  .terminal-button-green {
+    @apply bg-solana-green;
+  }
+
+  .terminal-content {
+    @apply p-6 text-slate-primary;
+  }
+
+  /* CTA Button */
+  .cta-button {
+    @apply inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-lg rounded-lg transition-all duration-300;
+    @apply bg-gradient-hero text-deep-space hover:shadow-purple-glow hover:scale-105;
+  }
+
+  .cta-button-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-lg rounded-lg transition-all duration-300;
+    @apply border-2 border-solana-green text-solana-green hover:bg-solana-green hover:text-deep-space;
+  }
+
+  /* Card styles */
+  .feature-card {
+    @apply bg-deep-space/80 border border-solana-purple/30 rounded-lg p-6 transition-all duration-300;
+    @apply hover:border-solana-purple hover:shadow-purple-glow hover:-translate-y-1;
+  }
+
+  /* Stat box */
+  .stat-box {
+    @apply bg-deep-space/80 border border-solana-green/30 rounded-lg p-6 text-center;
+  }
+
+  .stat-value {
+    @apply text-4xl md:text-5xl font-mono font-bold text-solana-green mb-2;
+  }
+
+  .stat-label {
+    @apply text-sm md:text-base text-slate-secondary font-sans;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  /* ASCII divider */
+  .ascii-divider {
+    @apply font-mono text-slate-tertiary text-sm my-8 overflow-hidden whitespace-nowrap;
+  }
+}
+
+/* Accessibility */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Focus styles */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-solana-purple focus-visible:ring-offset-2 focus-visible:ring-offset-deep-space;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Selection color */
+::selection {
+  @apply bg-solana-purple/50 text-slate-primary;
+}
+
+::-moz-selection {
+  @apply bg-solana-purple/50 text-slate-primary;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-deep-space;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-solana-green/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-solana-green/50;
+}

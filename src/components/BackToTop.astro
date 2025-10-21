@@ -1,0 +1,58 @@
+---
+// Back to Top Button - Appears on scroll
+---
+
+<button
+  id="back-to-top"
+  class="fixed bottom-8 right-8 z-40 p-4 bg-gradient-hero rounded-full shadow-terminal-glow opacity-0 invisible transition-all duration-300 hover:scale-110 focus-visible-ring group"
+  aria-label="Back to top"
+>
+  <svg
+    class="w-6 h-6 text-deep-space"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+<style>
+  #back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
+    // Show/hide button based on scroll position
+    const toggleButton = () => {
+      if (window.scrollY > 500) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    };
+
+    // Scroll to top when clicked
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+
+    // Listen to scroll events
+    window.addEventListener('scroll', toggleButton);
+    toggleButton(); // Initial check
+  });
+</script>

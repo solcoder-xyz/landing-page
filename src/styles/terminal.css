@@ -1,0 +1,313 @@
+/* Terminal Effects - CRT, Scanlines, Glow */
+
+/* CRT Screen Effect */
+.crt-effect {
+  position: relative;
+}
+
+.crt-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Scanline Animation */
+.scanline-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 241, 149, 0) 0%,
+    rgba(20, 241, 149, 0.1) 50%,
+    rgba(20, 241, 149, 0) 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Screen Flicker */
+.flicker-effect {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.98;
+  }
+}
+
+/* Terminal Glow */
+.terminal-glow {
+  position: relative;
+}
+
+.terminal-glow::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    rgba(20, 241, 149, 0.3),
+    rgba(153, 69, 255, 0.3)
+  );
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.terminal-glow:hover::before {
+  opacity: 1;
+}
+
+/* Cursor Blink */
+.cursor-blink {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background-color: currentColor;
+  animation: cursor-blink 1s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursor-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Typing Effect */
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #14F195;
+  animation: type 2s steps(40) 1s forwards, cursor-blink 0.75s step-end infinite;
+  width: 0;
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Glitch Effect (Subtle) */
+.glitch-effect {
+  position: relative;
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* RGB Split Effect (Very Subtle) */
+.rgb-split {
+  position: relative;
+}
+
+.rgb-split:hover::before,
+.rgb-split:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.rgb-split:hover::before {
+  color: #ff0000;
+  z-index: -1;
+  animation: glitch-before 0.3s infinite;
+}
+
+.rgb-split:hover::after {
+  color: #00ff00;
+  z-index: -2;
+  animation: glitch-after 0.3s infinite;
+}
+
+@keyframes glitch-before {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+  }
+  66% {
+    transform: translate(1px, -1px);
+  }
+}
+
+@keyframes glitch-after {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(1px, -1px);
+  }
+  66% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+/* Glow Pulse Animation */
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(20, 241, 149, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(20, 241, 149, 0.6);
+    filter: brightness(1.1);
+  }
+}
+
+/* Terminal Prompt */
+.terminal-prompt {
+  color: #14F195;
+  user-select: none;
+}
+
+.terminal-prompt::before {
+  content: '> ';
+}
+
+/* Terminal Output Line */
+.terminal-line {
+  margin: 0.5rem 0;
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
+}
+
+/* Success/Error Output */
+.terminal-success {
+  color: #14F195;
+}
+
+.terminal-success::before {
+  content: '✓ ';
+  margin-right: 0.5rem;
+}
+
+.terminal-error {
+  color: #FB7185;
+}
+
+.terminal-error::before {
+  content: '✗ ';
+  margin-right: 0.5rem;
+}
+
+/* Loading Animation */
+.terminal-loading {
+  display: inline-block;
+}
+
+.terminal-loading::after {
+  content: '...';
+  animation: loading 1.5s steps(4) infinite;
+}
+
+@keyframes loading {
+  0% {
+    content: '.';
+  }
+  33% {
+    content: '..';
+  }
+  66% {
+    content: '...';
+  }
+}
+
+/* Disable effects when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .crt-effect::before,
+  .scanline-effect::after,
+  .flicker-effect,
+  .cursor-blink,
+  .typing-effect,
+  .glitch-effect,
+  .rgb-split::before,
+  .rgb-split::after,
+  .glow-pulse,
+  .terminal-loading::after {
+    animation: none !important;
+  }
+
+  .terminal-glow::before {
+    display: none;
+  }
+}
