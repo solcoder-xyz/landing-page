@@ -10,12 +10,12 @@
         ═══════════════════════════════════════════════════════════
       </div>
       <h2 class="text-3xl md:text-4xl font-mono font-bold text-solana-green mb-4">
-        Try It Now (Simulated)
+        Try It Now
       </h2>
       <div class="ascii-divider text-center mt-6">
         ═══════════════════════════════════════════════════════════
       </div>
-      <p class="text-slate-secondary mt-4">
+      <p class="text-slate-secondary mt-4 mx-auto">
         Click an example prompt below to see SolCoder in action
       </p>
     </div>
@@ -31,15 +31,9 @@
 
       <div class="terminal-content">
         <!-- Terminal Output -->
-        <div id="demo-output" class="space-y-2 mb-4 min-h-[200px]">
+        <div id="demo-output" class="space-y-2 mb-4 h-[200px] overflow-y-auto scrollbar-hide">
           <!-- Initial state -->
           <div class="text-solana-green">$ solcoder</div>
-          <div class="text-slate-secondary mt-4">
-            <pre
-              class="text-[8px] leading-tight text-solana-green/50"
-            > @@@@@@    @@@@@@   @@@        @@@@@@@   @@@@@@   @@@@@@@
-!@@       @@!  @@@  @@!       !@@       @@!  @@@  @@!  @@@</pre>
-          </div>
           <div class="text-solana-green mt-4">
             🟢 SolCoder: Hello! I can help you build on Solana.
           </div>
@@ -117,6 +111,18 @@
   </div>
 </section>
 
+<style>
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+</style>
+
 <!-- Client-side Terminal Simulator Script -->
 <script>
   const responses = {
@@ -192,10 +198,6 @@
     // Clear previous output except initial greeting
     outputDiv.innerHTML = `
       <div class="text-solana-green">$ solcoder</div>
-      <div class="text-slate-secondary mt-4">
-        <pre class="text-[8px] leading-tight text-solana-green/50"> @@@@@@    @@@@@@   @@@        @@@@@@@   @@@@@@   @@@@@@@
-!@@       @@!  @@@  @@!       !@@       @@!  @@@  @@!  @@@</pre>
-      </div>
       <div class="text-solana-green mt-4">🟢 SolCoder: Hello! I can help you build on Solana.</div>
       <div class="text-solana-green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What would you like to create today?</div>
     `;
@@ -224,6 +226,10 @@
       outputDiv.appendChild(div);
 
       await typeText(div, response.text, 10);
+
+      // Auto-scroll to bottom
+      outputDiv.scrollTop = outputDiv.scrollHeight;
+
       await new Promise((resolve) => setTimeout(resolve, 200));
     }
 
@@ -234,6 +240,9 @@
     finalDiv.textContent =
       '\n🟢 SolCoder: Done! What else would you like to build?';
     outputDiv.appendChild(finalDiv);
+
+    // Final scroll to bottom
+    outputDiv.scrollTop = outputDiv.scrollHeight;
   }
 
   // Add click handlers

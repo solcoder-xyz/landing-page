@@ -2,14 +2,12 @@
 // Navigation Component - Sticky header with section links
 ---
 
-<nav class="sticky top-0 z-50 bg-deep-space/95 backdrop-blur-sm border-b border-solana-green/20">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-deep-space/95 backdrop-blur-sm border-b border-solana-green/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo / Brand -->
       <a href="#hero" class="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-        <div class="w-8 h-8 rounded bg-gradient-hero flex items-center justify-center font-mono font-bold text-deep-space">
-          SC
-        </div>
+        <img src="/scr_avatar.png" alt="SolCoder Logo" class="w-8 h-8 rounded" />
         <span class="font-mono font-bold text-lg gradient-text hidden sm:inline">SolCoder</span>
       </a>
 
@@ -64,8 +62,8 @@
     </div>
 
     <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="md:hidden hidden pb-4">
-      <div class="flex flex-col gap-2">
+    <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 right-0 bg-black border-b border-solana-green/20 shadow-lg">
+      <div class="flex flex-col gap-2 p-4">
         <a href="#hero" class="mobile-nav-link">🏠 Home</a>
         <a href="#problem" class="mobile-nav-link">❌ Problem</a>
         <a href="#vision" class="mobile-nav-link">🔮 Vision</a>

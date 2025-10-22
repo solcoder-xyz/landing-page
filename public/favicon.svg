@@ -1,14 +1,20 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- SolCoder Logo - Simple S shape with gradient -->
-  <rect width="32" height="32" rx="4" fill="#0E0E0E"/>
-  <path d="M8 12C8 10.5 9 9 11 9H21C23 9 24 10 24 11.5C24 13 23 14 21 14H13C11 14 10 15 10 16.5C10 18 11 19 13 19H21C23 19 24 20 24 21.5C24 23 23 24 21 24H11C9 24 8 23 8 21.5"
-        stroke="url(#gradient)"
-        stroke-width="2.5"
-        stroke-linecap="round"/>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gradient" x1="8" y1="9" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#9945FF"/>
-      <stop offset="100%" stop-color="#14F195"/>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9945FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3CDCE1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#14F195;stop-opacity:1" />
     </linearGradient>
   </defs>
+
+  <!-- Black background -->
+  <rect width="512" height="512" fill="#0E0E0E"/>
+
+  <!-- SCR text with gradient -->
+  <text x="256" y="280"
+        font-family="'Courier New', monospace"
+        font-size="120"
+        font-weight="bold"
+        text-anchor="middle"
+        fill="url(#gradient)">SCR</text>
 </svg>

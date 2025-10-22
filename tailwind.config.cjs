@@ -27,7 +27,7 @@ module.exports = {
       backgroundImage: {
         'gradient-hero': 'linear-gradient(45deg, #9945FF 0%, #14F195 100%)',
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'noise': "url('/noise-texture.png')",
+        // 'noise': "url('/noise-texture.png')",
       },
       animation: {
         'cursor-blink': 'cursor-blink 1s step-end infinite',

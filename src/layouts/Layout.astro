@@ -1,6 +1,9 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import BackToTop from '../components/BackToTop.astro';
+import '../styles/global.css';
+import '../styles/terminal.css';
+import '../styles/animations.css';
 
 interface Props {
   title?: string;
@@ -9,7 +12,7 @@ interface Props {
 }
 
 const {
-  title = 'SolCoder | AI-Powered Solana Development in 60 Seconds',
+  title = 'SolCoder | AI-Powered Solana Development in Minutes',
   description = 'Build and deploy Solana dApps with plain English. No Rust required. Open-source CLI agent with built-in wallet, knowledge base, and auto-deploy.',
   ogImage = '/og-image-terminal.png',
 } = Astro.props;
@@ -68,7 +71,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
 
     <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/noise-texture.png" />
+    <!-- <link rel="preload" as="image" href="/noise-texture.png" /> -->
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -92,11 +95,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "datePublished": "2024-11-21",
       "license": "https://opensource.org/licenses/MIT"
     })} />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    <link rel="stylesheet" href="/src/styles/terminal.css" />
-    <link rel="stylesheet" href="/src/styles/animations.css" />
 
     <!-- Analytics (Netlify Analytics is configured via netlify.toml) -->
   </head>
