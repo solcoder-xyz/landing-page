@@ -132,31 +132,10 @@ SolCoder:
 
 **[Visual: GitHub stars counter going up rapidly]**
 
----
-
-## SLIDE 7: SOCIAL PROOF (65-72s)
-### DESIRE → Proof It Works
-
-**[Visual: Testimonial cards sliding in]**
-
-**Card 1:**
-> "Deployed my first Solana program in 3 minutes. I don't even know Rust."
-> — @hacker_anon, Hackathon Winner
-
-**Card 2:**
-> "SolCoder saved our startup $80K in dev costs."
-> — Sarah Chen, DeFi Founder
-
-**Card 3:**
-> "Production-grade code. Shocked."
-> — Dr. Alex K., Stanford
-
-**Narrator:**
-"Thousands of developers. Tens of thousands of deployments. ZERO prior Solana knowledge required."
 
 ---
 
-## SLIDE 8: THE VISION (72-80s)
+## SLIDE 7: THE VISION (72-80s)
 ### DESIRE → The Future
 
 **[Visual: Network visualization of AI agents]**
@@ -177,7 +156,7 @@ SolCoder:
 
 ---
 
-## SLIDE 9: THE CALL TO ACTION (80-90s)
+## SLIDE 8: THE CALL TO ACTION (80-90s)
 ### ACTION → Make Them Move NOW
 
 **[Visual: Terminal window, blinking cursor]**
