@@ -1,0 +1,229 @@
+---
+// Explainer Video Modal Component with Video Player
+---
+
+<div id="video-modal" class="video-modal hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <!-- Dark Overlay -->
+  <div class="video-modal-overlay"></div>
+
+  <!-- Modal Container -->
+  <div class="video-modal-container animate-scale-in">
+    <!-- Modal Header with Close Button -->
+    <div class="video-modal-header">
+      <h2 class="text-xl md:text-2xl font-bold gradient-text">Explainer Video</h2>
+      <button
+        id="close-video-modal"
+        class="video-modal-close focus-visible-ring"
+        aria-label="Close video modal"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Video Player -->
+    <div class="video-modal-content">
+      <video
+        id="demo-video"
+        class="w-full h-auto rounded-lg"
+        controls
+      >
+        <source src="/explainer.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* Video Modal Styles */
+  .video-modal {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .video-modal.hidden {
+    display: none;
+  }
+
+  .video-modal.hidden.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+
+  .video-modal-overlay {
+    @apply absolute inset-0 bg-black/80 backdrop-blur-sm;
+    transition: opacity 0.3s ease-out;
+  }
+
+  .video-modal-container {
+    @apply relative bg-deep-space border border-solana-green/40 rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgba(20, 241, 149, 0.05) 0%, rgba(153, 69, 255, 0.05) 100%);
+  }
+
+  .video-modal-header {
+    @apply flex items-center justify-between px-6 py-4 border-b border-solana-green/30 bg-solana-green/5;
+    gap: 1rem;
+  }
+
+  .video-modal-close {
+    @apply text-slate-secondary hover:text-solana-green transition-colors duration-200 flex-shrink-0;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+  }
+
+  .video-modal-close:hover {
+    @apply bg-solana-green/10;
+  }
+
+  .video-modal-content {
+    @apply flex-1 p-4 md:p-6 overflow-auto;
+    min-height: 300px;
+  }
+
+  .video-modal-content video {
+    @apply bg-black rounded-lg;
+    box-shadow: 0 0 30px rgba(20, 241, 149, 0.2);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .video-modal-container {
+      max-height: 80vh;
+    }
+
+    .video-modal-header {
+      @apply px-4 py-3;
+    }
+
+    .video-modal-content {
+      @apply p-3;
+      min-height: 200px;
+    }
+
+    .video-modal-header h2 {
+      @apply text-lg;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .video-modal-container {
+      max-height: 70vh;
+      border-radius: 0.5rem;
+    }
+
+    .video-modal-header {
+      @apply px-3 py-2;
+    }
+
+    .video-modal-content {
+      @apply p-2;
+      min-height: 150px;
+    }
+
+    .video-modal-header h2 {
+      @apply text-base;
+    }
+
+    .video-modal-close {
+      @apply w-8 h-8;
+    }
+  }
+
+  /* Animation keyframes */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Glow effect on border */
+  .video-modal-container {
+    box-shadow: 0 0 30px rgba(20, 241, 149, 0.2), inset 0 0 20px rgba(20, 241, 149, 0.05);
+  }
+
+  /* Terminal-like header styling */
+  .video-modal-header h2 {
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+  }
+</style>
+
+<script is:inline>
+  function initExplainerModal() {
+    const modal = document.getElementById('video-modal');
+    const closeBtn = document.getElementById('close-video-modal');
+    const video = document.getElementById('demo-video');
+
+    if (!modal || !closeBtn || !video) {
+      console.warn('Explainer modal elements not found');
+      return;
+    }
+
+    // Function to close modal
+    const closeModal = () => {
+      modal.classList.add('fade-out');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('fade-out');
+        document.body.style.overflow = '';
+        video.pause();
+      }, 300);
+    };
+
+    // Find all explainer links (new ID: explainer)
+    const explainerLinks = document.querySelectorAll('a[href="#explainer"]');
+
+    explainerLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('hidden', 'fade-out');
+        document.body.style.overflow = 'hidden';
+        video.play();
+      });
+    });
+
+    // Close button
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on overlay click
+    const overlay = modal.querySelector('.video-modal-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', closeModal);
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExplainerModal);
+  } else {
+    initExplainerModal();
+  }
+</script>
