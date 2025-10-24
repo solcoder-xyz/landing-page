@@ -1,5 +1,6 @@
 ---
 // Footer Component
+const isSubpage = !Astro.url.pathname.match(/^\/$/);
 ---
 
 <footer class="section-container bg-deep-space/80 border-t border-solana-green/20">
@@ -37,30 +38,16 @@
         <ul class="space-y-2 text-slate-secondary">
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a href="#features" class="hover:text-solana-green transition-colors">Features</a>
+            <a href={isSubpage ? "/#features" : "#features"} class="hover:text-solana-green transition-colors">Features</a>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a href="#vision" class="hover:text-solana-green transition-colors">Roadmap</a>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a href="#getting-started" class="hover:text-solana-green transition-colors"
-              >Pricing (Free!)</a
-            >
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a
-              href="https://github.com/solcoder/SolCoder/tree/main/templates"
-              class="hover:text-solana-green transition-colors">Templates</a
-            >
+            <a href={isSubpage ? "/#vision" : "#vision"} class="hover:text-solana-green transition-colors">Roadmap</a>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">└─</span>
-            <a
-              href="https://github.com/solcoder/SolCoder/blob/main/CHANGELOG.md"
-              class="hover:text-solana-green transition-colors">Changelog</a
+            <a href={isSubpage ? "/#getting-started" : "#getting-started"} class="hover:text-solana-green transition-colors"
+              >Pricing (Free!)</a
             >
           </li>
         </ul>
@@ -72,7 +59,7 @@
         <ul class="space-y-2 text-slate-secondary">
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a href="/docs" class="hover:text-solana-green transition-colors">Documentation</a>
+            <span class="text-slate-secondary cursor-not-allowed">Documentation <span class="text-slate-tertiary text-xs">(soon)</span></span>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
@@ -84,18 +71,8 @@
             >
           </li>
           <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a href="/docs/api" class="hover:text-solana-green transition-colors">API Reference</a>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a href="/tutorials" class="hover:text-solana-green transition-colors"
-              >Video Tutorials</a
-            >
-          </li>
-          <li class="flex items-start gap-2">
             <span class="text-solana-green">└─</span>
-            <a href="/blog" class="hover:text-solana-green transition-colors">Blog</a>
+            <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-solana-green transition-colors">Whitepaper</a>
           </li>
         </ul>
       </div>
@@ -115,33 +92,16 @@
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a
-              href="https://discord.gg/solcoder"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-solana-green transition-colors">Discord <span class="text-slate-tertiary text-xs">(soon)</span></a
-            >
+            <span class="text-slate-secondary cursor-not-allowed">Discord <span class="text-slate-tertiary text-xs">(soon)</span></span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
+            <span class="text-solana-green">└─</span>
             <a
-              href="https://x.com/CoderSol37"
+              href="https://x.com/solcoderxyz"
               target="_blank"
               rel="noopener noreferrer"
               class="hover:text-solana-green transition-colors">Twitter/X</a
             >
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a href="/forum" class="hover:text-solana-green transition-colors">Forum</a>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">├─</span>
-            <a href="/newsletter" class="hover:text-solana-green transition-colors">Newsletter</a>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-solana-green">└─</span>
-            <a href="/meetups" class="hover:text-solana-green transition-colors">Meetups</a>
           </li>
         </ul>
       </div>
@@ -152,12 +112,7 @@
         <ul class="space-y-2 text-slate-secondary mb-6">
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a
-              href="https://github.com/solcoder/SolCoder/blob/main/LICENSE"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-solana-green transition-colors">MIT License</a
-            >
+            <a href="/license" class="hover:text-solana-green transition-colors">MIT License</a>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
@@ -173,14 +128,11 @@
         <ul class="space-y-2 text-slate-secondary">
           <li class="flex items-start gap-2">
             <span class="text-solana-green">├─</span>
-            <a href="#contribute" class="hover:text-solana-green transition-colors">Contribute</a>
+            <a href={isSubpage ? "/#contribute" : "#contribute"} class="hover:text-solana-green transition-colors">Contribute</a>
           </li>
           <li class="flex items-start gap-2">
             <span class="text-solana-green">└─</span>
-            <a
-              href="https://github.com/solcoder/SolCoder/blob/main/SECURITY.md"
-              class="hover:text-solana-green transition-colors">Security Policy</a
-            >
+            <a href="/security" class="hover:text-solana-green transition-colors">Security Policy</a>
           </li>
         </ul>
       </div>
@@ -195,7 +147,7 @@
       <div class="text-slate-tertiary">
         Made with <span class="text-solana-purple">💜</span> by the Solana community
         <br class="md:hidden" />
-        <span class="text-slate-secondary">© 2024 SolCoder. Open source under MIT License.</span>
+        <span class="text-slate-secondary">© 2025 SolCoder. Open source under MIT License.</span>
       </div>
 
       <!-- Social Links -->
@@ -218,7 +170,7 @@
           Telegram
         </a>
         <span class="text-solana-green">|</span>
-        <span>Built on Solana</span>
+        <span>Built on <a href="https://solana.com" target="_blank" rel="noopener noreferrer" class="text-solana-green hover:text-solana-purple transition-colors">Solana</a></span>
       </div>
     </div>
 

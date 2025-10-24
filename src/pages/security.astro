@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Security Policy | SolCoder"
+  description="SolCoder Security Policy - How we handle security vulnerabilities and keep you safe."
+>
+  <main class="min-h-screen bg-deep-space">
+    <!-- Content Section -->
+    <section class="section-container py-20">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-solana-green mb-4 font-mono">
+          └─ Security Policy
+        </h1>
+        <p class="text-slate-secondary font-mono text-sm mb-12">
+          Reporting vulnerabilities and security best practices
+        </p>
+
+        <div class="space-y-8 font-mono text-slate-secondary leading-relaxed">
+          <!-- Introduction -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Security at SolCoder</h2>
+            <p>
+              Security is a top priority for SolCoder. We are committed to maintaining the highest standards of security for our users and their assets. This Security Policy outlines our commitment to responsible disclosure and our procedures for addressing security vulnerabilities.
+            </p>
+          </section>
+
+          <!-- Reporting Vulnerabilities -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Reporting Security Vulnerabilities</h2>
+            <div class="space-y-4 ml-4 border-l border-solana-green/30 pl-4">
+              <p>
+                If you discover a security vulnerability in SolCoder, please report it responsibly by emailing us or opening a private security advisory on GitHub. <strong>Do not</strong> publicly disclose the vulnerability until it has been addressed.
+              </p>
+              <div class="bg-slate-primary/30 border border-solana-green/20 p-4 rounded-lg">
+                <p class="font-bold text-solana-green mb-2">Report a Vulnerability:</p>
+                <ul class="list-none space-y-2 ml-4">
+                  <li>├─ <strong>GitHub Security Advisory:</strong> Use the "Report a vulnerability" feature in our GitHub repository</li>
+                  <li>└─ <strong>Email:</strong> Contact us through our community channels for sensitive matters</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Response Timeline -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Vulnerability Response Timeline</h2>
+            <p class="mb-3">We aim to respond to security reports within the following timeframes:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ <strong>Initial Response:</strong> Within 48 hours</li>
+              <li>├─ <strong>Triage & Assessment:</strong> Within 1 week</li>
+              <li>├─ <strong>Fix Development:</strong> Within 2-4 weeks (depending on severity)</li>
+              <li>├─ <strong>Release & Disclosure:</strong> Coordinated disclosure after patch release</li>
+              <li>└─ <strong>Security Advisory:</strong> Published within 30 days of patch</li>
+            </ul>
+          </section>
+
+          <!-- Severity Levels -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Vulnerability Severity Levels</h2>
+            <div class="space-y-4 ml-4 border-l border-solana-green/30 pl-4">
+              <div>
+                <h3 class="text-solana-purple font-bold mb-2">Critical</h3>
+                <p>Exploitable vulnerabilities that directly impact user funds, private keys, or system integrity. Immediate action required.</p>
+              </div>
+              <div>
+                <h3 class="text-solana-purple font-bold mb-2">High</h3>
+                <p>Significant security flaws that could enable unauthorized access or data exposure. Urgent patching required.</p>
+              </div>
+              <div>
+                <h3 class="text-solana-purple font-bold mb-2">Medium</h3>
+                <p>Moderate vulnerabilities with limited impact or requiring specific conditions. Standard patching timeline applies.</p>
+              </div>
+              <div>
+                <h3 class="text-solana-purple font-bold mb-2">Low</h3>
+                <p>Minor issues with minimal impact. Can be addressed in regular releases.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Best Practices -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Security Best Practices</h2>
+            <p class="mb-3">When using SolCoder, we recommend:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ <strong>Keep Updated:</strong> Always use the latest version of SolCoder</li>
+              <li>├─ <strong>Secure Your Keys:</strong> Never share your private keys or seed phrases</li>
+              <li>├─ <strong>Use Environment Variables:</strong> Store sensitive data in .env files, never commit them</li>
+              <li>├─ <strong>Code Review:</strong> Review generated code before deploying to production</li>
+              <li>├─ <strong>Network Security:</strong> Use secure connections (HTTPS) for all transactions</li>
+              <li>├─ <strong>Testnet First:</strong> Always test on Solana devnet/testnet before mainnet deployment</li>
+              <li>└─ <strong>Audit Smart Contracts:</strong> Have critical contracts audited by security professionals</li>
+            </ul>
+          </section>
+
+          <!-- Wallet Security -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Wallet & Asset Security</h2>
+            <div class="space-y-4 ml-4 border-l border-solana-green/30 pl-4">
+              <p>
+                SolCoder provides wallet integration capabilities. Your security is paramount:
+              </p>
+              <ul class="list-none space-y-2 ml-4">
+                <li>├─ <strong>Local Processing:</strong> Keys are processed locally on your machine</li>
+                <li>├─ <strong>No Storage:</strong> We never store or transmit your private keys</li>
+                <li>├─ <strong>Open Source:</strong> All code is open source for community audit</li>
+                <li>└─ <strong>Standard Libraries:</strong> We use industry-standard cryptographic libraries</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Known Issues -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Known Issues & Limitations</h2>
+            <p class="mb-3">Current known limitations:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ This is beta software - use at your own risk</li>
+              <li>├─ Generated code should be thoroughly tested before production use</li>
+              <li>├─ Some features may change as we improve the platform</li>
+              <li>└─ Mainnet deployments are at your own discretion and risk</li>
+            </ul>
+          </section>
+
+          <!-- Responsible Disclosure -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Responsible Disclosure</h2>
+            <p class="mb-3">We follow responsible disclosure practices:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ <strong>Confidentiality:</strong> We keep reported vulnerabilities confidential</li>
+              <li>├─ <strong>Credit:</strong> Researchers who report responsibly will be credited</li>
+              <li>├─ <strong>Coordination:</strong> We coordinate timing of disclosure and patches</li>
+              <li>└─ <strong>Transparency:</strong> We publish security advisories to keep users informed</li>
+            </ul>
+          </section>
+
+          <!-- Security Updates -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">├─ Security Updates & Patches</h2>
+            <p class="mb-3">Security updates are released:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ Via GitHub releases with security tags</li>
+              <li>├─ With detailed security advisories explaining the issue</li>
+              <li>├─ To npm registry for package manager users</li>
+              <li>└─ Announced in our community channels (Telegram, Twitter/X)</li>
+            </ul>
+          </section>
+
+          <!-- Contact & Support -->
+          <section>
+            <h2 class="text-xl text-solana-green font-bold mb-4">└─ Questions & Support</h2>
+            <p class="mb-3">For security-related questions or support:</p>
+            <ul class="list-none space-y-2 ml-4">
+              <li>├─ <strong>GitHub Issues:</strong> Public questions and feature requests</li>
+              <li>├─ <strong>Security Advisory:</strong> Private vulnerability reports</li>
+              <li>├─ <strong>Community:</strong> <a href="https://t.me/+pNKuDgtZ0H9lM2U0" target="_blank" rel="noopener noreferrer" class="text-solana-purple hover:text-solana-green transition-colors">Telegram</a> for general support</li>
+              <li>└─ <strong>Twitter/X:</strong> <a href="https://x.com/solcoderxyz" target="_blank" rel="noopener noreferrer" class="text-solana-purple hover:text-solana-green transition-colors">@solcoderxyz</a> for announcements</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>
