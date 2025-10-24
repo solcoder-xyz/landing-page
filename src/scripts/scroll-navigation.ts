@@ -160,8 +160,6 @@ function scrollToSection(sectionId: string) {
 export function initSmoothMouseScroll() {
   // Most modern browsers already handle this well,
   // but we can enhance it for better UX
-  let isWheelScrolling = false;
-
   window.addEventListener(
     'wheel',
     (event: WheelEvent) => {
@@ -172,11 +170,6 @@ export function initSmoothMouseScroll() {
 
       // Let the browser handle natural scrolling
       // This ensures compatibility with all mouse/trackpad configurations
-      isWheelScrolling = true;
-
-      setTimeout(() => {
-        isWheelScrolling = false;
-      }, 100);
     },
     { passive: true }
   );
