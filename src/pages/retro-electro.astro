@@ -1,0 +1,328 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RetroElectroSPAPlayer from '../components/RetroElectroSPAPlayer.astro';
+
+const title = 'Retro Electro - SolCoder Viral Campaign';
+const description = 'Experience the sonic pulse of SolCoder. A retro-electro anthem celebrating the future of decentralized development. 🎵';
+---
+
+<Layout title={title} description={description}>
+  <div class="retro-electro-spa-wrapper">
+    <!-- Player SPA -->
+    <RetroElectroSPAPlayer audioSrc="/audio/SolCoder-RetroElectro.wav" srtSrc="/audio/SolCoder-RetroElectro.srt" />
+
+    <!-- Floating Header Overlay -->
+    <div class="spa-header-overlay">
+      <div class="spa-header-content">
+        <!-- ASCII Banner - RETRO ELECTRO (Full Width) -->
+        <pre class="ascii-banner" aria-label="Retro Electro Logo">
+<span class="text-[#9945FF]">@@@@@@@   @@@@@@@@  @@@@@@@  @@@@@@@    @@@@@@      @@@@@@@@  @@@       @@@@@@@@   @@@@@@@  @@@@@@@  @@@@@@@    @@@@@@   </span>
+<span class="text-[#8264FF]">@@@@@@@@  @@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@     @@@@@@@@  @@@       @@@@@@@@  @@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  </span>
+<span class="text-[#6E8CFF]">@@!  @@@  @@!         @@!    @@!  @@@  @@!  @@@     @@!       @@!       @@!       !@@         @@!    @@!  @@@  @@!  @@@  </span>
+<span class="text-[#55B4F5]">!@!  @!@  !@!         !@!    !@!  @!@  !@!  @!@     !@!       !@!       !@!       !@!         !@!    !@!  @!@  !@!  @!@  </span>
+<span class="text-[#3CDCE1]">@!@!!@!   @!!!:!      @!!    @!@!!@!   @!@  !@!     @!!!:!    @!!       @!!!:!    !@!         @!!    @!@!!@!   @!@  !@!  </span>
+<span class="text-[#28F0C8]">!!@!@!    !!!!!:      !!!    !!@!@!    !@!  !!!     !!!!!:    !!!       !!!!!:    !!!         !!!    !!@!@!    !@!  !!!  </span>
+<span class="text-[#19F5A5]">!!: :!!   !!:         !!:    !!: :!!   !!:  !!!     !!:       !!:       !!:       :!!         !!:    !!: :!!   !!:  !!!  </span>
+<span class="text-[#14F58C]">:!:  !:!  :!:         :!:    :!:  !:!  :!:  !:!     :!:        :!:      :!:       :!:         :!:    :!:  !:!  :!:  !:!  </span>
+<span class="text-[#14F195]">::   :::   :: ::::     ::    ::   :::  ::::: ::      :: ::::   :: ::::   :: ::::   ::: :::     ::    ::   :::  ::::: ::  </span>
+<span class="text-[#14F195]"> :   : :  : :: ::      :      :   : :   : :  :      : :: ::   : :: : :  : :: ::    :: :: :     :      :   : :   : :  :   </span>
+</pre>
+      </div>
+    </div>
+
+    <!-- Subtitle - Full Width -->
+    <div class="spa-subtitle-wrapper">
+      <p class="spa-subtitle">by SolCoder</p>
+    </div>
+
+    <!-- Learn More Link - Bottom Right Corner -->
+    <div class="learn-more-link">
+      <a href="/" class="learn-more-text">
+        Learn more about SolCoder →
+      </a>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .retro-electro-spa-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Header Overlay */
+  .spa-header-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    pointer-events: none;
+    padding: 5rem 0.5rem 1rem 0.5rem;
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+
+  .spa-header-content {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 0.5rem;
+    background: none !important;
+  }
+
+  .spa-title {
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(to right, #14f195, #38bdf8, #9945ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-family: 'Press Start 2P', monospace;
+    letter-spacing: 0.12em;
+    margin: 0;
+    text-shadow:
+      0 0 20px rgba(20, 241, 149, 0.5),
+      0 0 40px rgba(157, 69, 255, 0.3);
+    filter: drop-shadow(0 0 10px rgba(20, 241, 149, 0.4));
+  }
+
+  .spa-subtitle-wrapper {
+    position: fixed;
+    top: 240px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .spa-subtitle {
+    font-size: clamp(0.75rem, 2vw, 1.1rem);
+    color: #14f195;
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(20, 241, 149, 0.3);
+    text-align: center;
+  }
+
+  /* ASCII Banner */
+  .ascii-banner {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.35rem, 1vw, 0.65rem);
+    text-align: center;
+    margin: 0 auto 1rem;
+    line-height: 1.05;
+    letter-spacing: -0.1em;
+    white-space: pre;
+    color: #14f195;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    background: none !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+  }
+
+  .ascii-banner span {
+    opacity: 1 !important;
+  }
+
+  .solana-green-text {
+    color: #14f195;
+    text-shadow: 0 0 10px rgba(20, 241, 149, 0.3);
+  }
+
+  /* Learn More Link */
+  .learn-more-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 60;
+    pointer-events: all;
+  }
+
+  .learn-more-text {
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    color: #14f195;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid #14f195;
+    border-radius: 4px;
+    background: #0E0E0E;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(20, 241, 149, 0.5);
+    box-shadow: 0 0 15px rgba(20, 241, 149, 0.3);
+  }
+
+  .learn-more-text:hover {
+    background: rgba(20, 241, 149, 0.1);
+    border-color: #38bdf8;
+    color: #38bdf8;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 25px rgba(20, 241, 149, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .spa-header-overlay {
+      padding: 0.75rem 1rem;
+    }
+
+    .spa-subtitle-wrapper {
+      top: 150px;
+    }
+
+    .spa-title {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+    }
+
+    .spa-subtitle {
+      font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+    }
+
+    .spa-nav-overlay {
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .spa-nav-container {
+      gap: 1.5rem;
+    }
+
+    .spa-nav-primary,
+    .spa-nav-secondary {
+      gap: 1.5rem;
+    }
+
+    .spa-nav-btn {
+      min-width: 90px;
+      min-height: 80px;
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-icon {
+      font-size: 1.8rem;
+    }
+
+    .nav-label {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .spa-nav-overlay {
+      padding: 2.5rem 1rem 1rem;
+    }
+
+    .spa-nav-primary {
+      gap: 1.2rem;
+    }
+
+    .spa-nav-secondary {
+      gap: 1.2rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+      padding: 0 1rem;
+      margin: 0 -1rem;
+    }
+
+    .spa-nav-btn {
+      min-width: 85px;
+      min-height: 75px;
+      padding: 0.9rem 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .nav-icon {
+      font-size: 1.6rem;
+    }
+
+    .nav-label {
+      font-size: 0.55rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .spa-header-overlay {
+      padding: 0.5rem;
+    }
+
+    .spa-subtitle-wrapper {
+      top: 120px;
+    }
+
+    .spa-title {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .spa-subtitle {
+      font-size: 0.6rem;
+    }
+
+    .spa-nav-overlay {
+      padding: 2rem 0.75rem 0.75rem;
+    }
+
+    .spa-nav-container {
+      gap: 1.2rem;
+    }
+
+    .spa-nav-primary {
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .spa-nav-primary .spa-nav-btn {
+      flex: 1;
+      min-width: auto;
+      min-height: 70px;
+    }
+
+    .spa-nav-secondary {
+      gap: 1rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      justify-content: flex-start;
+    }
+
+    .spa-nav-secondary .spa-nav-btn {
+      min-width: 80px;
+      min-height: 70px;
+      padding: 0.8rem 1rem;
+      flex-shrink: 0;
+    }
+
+    .nav-icon {
+      font-size: 1.4rem;
+    }
+
+    .nav-label {
+      font-size: 0.5rem;
+    }
+
+    .spa-nav-hint {
+      font-size: 0.55rem;
+    }
+  }
+</style>
+

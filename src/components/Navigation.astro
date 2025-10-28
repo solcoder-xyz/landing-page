@@ -1,8 +1,10 @@
 ---
 // Navigation Component - Sticky header with section links
 const isSubpage = !Astro.url.pathname.match(/^\/$/);
+const isRetroElectro = Astro.url.pathname.includes('retro-electro');
 ---
 
+{!isRetroElectro && (
 <nav class="fixed top-0 left-0 right-0 z-50 bg-deep-space/95 backdrop-blur-sm border-b border-solana-green/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -76,6 +78,7 @@ const isSubpage = !Astro.url.pathname.match(/^\/$/);
     </div>
   </div>
 </nav>
+)}
 
 <style>
   /* Desktop Navigation Links */

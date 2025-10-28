@@ -1,0 +1,719 @@
+---
+// Winamp-style retro music player for Retro Electro song
+interface Props {
+  audioSrc: string;
+  srtSrc: string;
+}
+
+const { audioSrc, srtSrc } = Astro.props;
+---
+
+<div class="winamp-player-container">
+  <!-- Winamp Player Window -->
+  <div class="winamp-player">
+    <!-- Top Bar -->
+    <div class="winamp-titlebar">
+      <div class="winamp-title">
+        <span class="text-xs font-bold text-cyan-400">▶ Retro Electro - SolCoder</span>
+      </div>
+      <div class="winamp-controls">
+        <button class="winamp-btn minimize-btn" aria-label="Minimize">_</button>
+        <button class="winamp-btn close-btn" aria-label="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Main Display -->
+    <div class="winamp-display-area">
+      <!-- Album Art / Visualizer -->
+      <div class="winamp-main-display">
+        <div class="winamp-visualizer" id="visualizer">
+          <canvas id="visualizerCanvas" width="276" height="60"></canvas>
+        </div>
+        <div class="winamp-info">
+          <div class="winamp-time">
+            <span id="currentTime">0:00</span>
+            <span>/</span>
+            <span id="duration">2:40</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lyrics Display -->
+      <div class="winamp-lyrics-panel">
+        <div class="lyrics-label">LYRICS</div>
+        <div class="lyrics-content" id="lyricsContent">
+          <div class="lyric-line">♫ Loading lyrics...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider Area -->
+    <div class="winamp-slider-area">
+      <input
+        type="range"
+        id="progressSlider"
+        class="winamp-slider"
+        min="0"
+        max="100"
+        value="0"
+        aria-label="Progress"
+      />
+    </div>
+
+    <!-- Status Bar -->
+    <div class="winamp-statusbar">
+      <span id="statusText" class="text-xs">Ready.</span>
+    </div>
+
+    <!-- Controls -->
+    <div class="winamp-controls-area">
+      <!-- Left Controls -->
+      <div class="control-group">
+        <button class="winamp-btn control-btn" id="prevBtn" aria-label="Previous">⏮</button>
+        <button class="winamp-btn control-btn" id="playBtn" aria-label="Play">▶</button>
+        <button class="winamp-btn control-btn" id="pauseBtn" aria-label="Pause">⏸</button>
+        <button class="winamp-btn control-btn" id="stopBtn" aria-label="Stop">⏹</button>
+        <button class="winamp-btn control-btn" id="nextBtn" aria-label="Next">⏭</button>
+      </div>
+
+      <!-- Volume Section -->
+      <div class="volume-section">
+        <span class="text-xs font-bold">VOL</span>
+        <input
+          type="range"
+          id="volumeSlider"
+          class="winamp-volume-slider"
+          min="0"
+          max="100"
+          value="80"
+          aria-label="Volume"
+        />
+        <span id="volumeValue" class="text-xs">80</span>
+      </div>
+    </div>
+
+    <!-- Equalizer Button -->
+    <div class="winamp-eq-section">
+      <button class="winamp-eq-btn" id="eqBtn" aria-label="Equalizer">EQ</button>
+    </div>
+  </div>
+
+  <!-- Hidden Audio Element -->
+  <audio id="audioPlayer">
+    <source src={audioSrc} type="audio/wav" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Mini Visualizer Bars -->
+  <div class="visualizer-bars-container">
+    {Array.from({ length: 16 }).map(() => (
+      <div class="visualizer-bar"></div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .winamp-player-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 400px;
+  }
+
+  /* Main Winamp Player */
+  .winamp-player {
+    background: linear-gradient(to bottom, #c0c0c0 0%, #dfdfdf 50%, #c0c0c0 100%);
+    border: 2px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #404040, 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 2px;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    user-select: none;
+    width: 100%;
+  }
+
+  /* Titlebar */
+  .winamp-titlebar {
+    background: linear-gradient(to right, #000080, #1084d7);
+    color: white;
+    padding: 2px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid #dfdfdf;
+    cursor: move;
+  }
+
+  .winamp-title {
+    font-size: 11px;
+    font-weight: bold;
+    flex: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .winamp-controls {
+    display: flex;
+    gap: 2px;
+  }
+
+  .winamp-btn {
+    width: 16px;
+    height: 14px;
+    padding: 0;
+    border: 1px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    background: #c0c0c0;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .winamp-btn:active {
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+  }
+
+  .minimize-btn {
+    background: #c0c0c0;
+  }
+
+  .close-btn {
+    background: #c0c0c0;
+  }
+
+  /* Main Display Area */
+  .winamp-display-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    padding: 3px;
+    background: #c0c0c0;
+  }
+
+  .winamp-main-display {
+    background: #000;
+    border: 2px solid;
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .winamp-visualizer {
+    width: 100%;
+    height: 36px;
+    background: #000;
+    border: 1px solid #404040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #visualizerCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .winamp-info {
+    background: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 8px;
+    padding: 2px 4px;
+    text-align: right;
+    letter-spacing: 1px;
+  }
+
+  .winamp-time {
+    font-weight: bold;
+  }
+
+  /* Lyrics Panel */
+  .winamp-lyrics-panel {
+    background: #000;
+    border: 2px solid;
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    min-height: 60px;
+  }
+
+  .lyrics-label {
+    color: #00ff00;
+    font-size: 7px;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    padding: 2px;
+    border-bottom: 1px solid #00ff00;
+    text-align: center;
+  }
+
+  .lyrics-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px;
+    font-size: 8px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .lyric-line {
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.3;
+    padding: 2px 0;
+  }
+
+  .lyric-line.active {
+    color: #ffff00;
+    font-weight: bold;
+    text-shadow: 0 0 4px #ffff00, 0 0 8px #ffff00;
+  }
+
+  /* Scrollbar styling for lyrics */
+  .lyrics-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .lyrics-content::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  .lyrics-content::-webkit-scrollbar-thumb {
+    background: #404040;
+    border: 1px solid #808080;
+  }
+
+  /* Slider Area */
+  .winamp-slider-area {
+    padding: 2px 3px;
+    background: #c0c0c0;
+  }
+
+  .winamp-slider {
+    width: 100%;
+    height: 10px;
+    padding: 0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    background: #c0c0c0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .winamp-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 10px;
+    background: #000080;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+  }
+
+  .winamp-slider::-moz-range-thumb {
+    width: 4px;
+    height: 10px;
+    background: #000080;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+  }
+
+  /* Status Bar */
+  .winamp-statusbar {
+    background: #c0c0c0;
+    padding: 2px 3px;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #404040;
+    font-size: 8px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Controls Area */
+  .winamp-controls-area {
+    background: #c0c0c0;
+    padding: 3px;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .control-group {
+    display: flex;
+    gap: 2px;
+  }
+
+  .control-btn {
+    width: 24px;
+    height: 20px;
+    padding: 2px;
+    font-size: 10px;
+  }
+
+  .volume-section {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .winamp-volume-slider {
+    width: 60px;
+    height: 8px;
+    padding: 0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    background: #c0c0c0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .winamp-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 8px;
+    background: #000080;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+  }
+
+  .winamp-volume-slider::-moz-range-thumb {
+    width: 4px;
+    height: 8px;
+    background: #000080;
+    cursor: pointer;
+    border: 1px solid #dfdfdf;
+  }
+
+  #volumeValue {
+    min-width: 20px;
+    text-align: right;
+  }
+
+  /* Equalizer Button */
+  .winamp-eq-section {
+    background: #c0c0c0;
+    padding: 2px 3px;
+    border-top: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .winamp-eq-btn {
+    width: 34px;
+    height: 14px;
+    padding: 2px 4px;
+    border: 1px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    background: #c0c0c0;
+    font-size: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .winamp-eq-btn:active {
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+  }
+
+  /* Visualizer Bars */
+  .visualizer-bars-container {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: flex-end;
+    height: 60px;
+    padding: 1rem;
+    background: #0E0E0E;
+    border: 2px solid;
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .visualizer-bar {
+    width: 8px;
+    background: linear-gradient(to top, #14f195, #9945ff);
+    border: 1px solid #dfdfdf;
+    min-height: 4px;
+    animation: barPulse 0.1s ease-in-out;
+  }
+
+  @keyframes barPulse {
+    0% {
+      height: 4px;
+    }
+    100% {
+      height: 40px;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .winamp-player-container {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+
+    .winamp-display-area {
+      grid-template-columns: 1fr;
+    }
+
+    .winamp-lyrics-panel {
+      min-height: 80px;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ audioSrc, srtSrc }}>
+  // Parse SRT subtitles
+  async function parseSRT(srtUrl) {
+    try {
+      const response = await fetch(srtUrl);
+      const text = await response.text();
+
+      const subtitles = [];
+      const blocks = text.trim().split('\n\n');
+
+      for (const block of blocks) {
+        const lines = block.split('\n');
+        if (lines.length < 3) continue;
+
+        const timecode = lines[1];
+        const [start, end] = timecode.split(' --> ');
+
+        const text = lines.slice(2).join('\n');
+
+        const startMs = timeToMs(start);
+        const endMs = timeToMs(end);
+
+        subtitles.push({ start: startMs, end: endMs, text });
+      }
+
+      return subtitles;
+    } catch (error) {
+      console.error('Error parsing SRT:', error);
+      return [];
+    }
+  }
+
+  function timeToMs(timeStr) {
+    const [time, ms] = timeStr.split(',');
+    const [h, m, s] = time.split(':').map(Number);
+    return h * 3600000 + m * 60000 + s * 1000 + (ms ? Number(ms) : 0);
+  }
+
+  function msToTime(ms) {
+    const seconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const displaySeconds = seconds % 60;
+    return `${minutes}:${displaySeconds.toString().padStart(2, '0')}`;
+  }
+
+  // Initialize player
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playBtn = document.getElementById('playBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const progressSlider = document.getElementById('progressSlider');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const volumeValue = document.getElementById('volumeValue');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+  const statusText = document.getElementById('statusText');
+  const lyricsContent = document.getElementById('lyricsContent');
+  const visualizerCanvas = document.getElementById('visualizerCanvas');
+  const visualizerBars = document.querySelectorAll('.visualizer-bar');
+
+  let subtitles = [];
+  let isPlaying = false;
+  let audioContext;
+  let analyser;
+  let dataArray;
+
+  // Load subtitles
+  (async () => {
+    subtitles = await parseSRT(srtSrc);
+  })();
+
+  // Play button
+  playBtn.addEventListener('click', () => {
+    audioPlayer.play();
+    isPlaying = true;
+    statusText.textContent = 'Playing...';
+    updateButtons();
+    startVisualizer();
+  });
+
+  // Pause button
+  pauseBtn.addEventListener('click', () => {
+    audioPlayer.pause();
+    isPlaying = false;
+    statusText.textContent = 'Paused.';
+    updateButtons();
+  });
+
+  // Stop button
+  stopBtn.addEventListener('click', () => {
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    isPlaying = false;
+    statusText.textContent = 'Stopped.';
+    updateButtons();
+    lyricsContent.innerHTML = '<div class="lyric-line">♫ Ready to play...</div>';
+    progressSlider.value = 0;
+  });
+
+  // Volume control
+  volumeSlider.addEventListener('input', (e) => {
+    const vol = e.target.value;
+    volumeValue.textContent = vol;
+    audioPlayer.volume = vol / 100;
+  });
+
+  // Progress slider
+  progressSlider.addEventListener('change', (e) => {
+    audioPlayer.currentTime = (e.target.value / 100) * audioPlayer.duration;
+  });
+
+  // Update time and progress
+  audioPlayer.addEventListener('timeupdate', () => {
+    currentTimeEl.textContent = msToTime(audioPlayer.currentTime * 1000);
+    progressSlider.value = (audioPlayer.currentTime / audioPlayer.duration) * 100 || 0;
+
+    // Update lyrics
+    updateLyrics(audioPlayer.currentTime * 1000);
+
+    // Update visualizer
+    updateVisualizer();
+  });
+
+  // Set duration
+  audioPlayer.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = msToTime(audioPlayer.duration * 1000);
+  });
+
+  // Handle audio end
+  audioPlayer.addEventListener('ended', () => {
+    isPlaying = false;
+    statusText.textContent = 'Stopped.';
+    updateButtons();
+    lyricsContent.innerHTML = '<div class="lyric-line">♫ Track finished. Click play to restart.</div>';
+  });
+
+  function updateLyrics(currentMs) {
+    const current = subtitles.find(
+      (sub) => currentMs >= sub.start && currentMs < sub.end,
+    );
+
+    if (current) {
+      lyricsContent.innerHTML = `<div class="lyric-line active">${current.text}</div>`;
+    }
+  }
+
+  function updateButtons() {
+    if (isPlaying) {
+      playBtn.style.borderColor = '#404040 #dfdfdf #dfdfdf #404040';
+      pauseBtn.style.borderColor = '#dfdfdf #404040 #404040 #dfdfdf';
+    } else {
+      playBtn.style.borderColor = '#dfdfdf #404040 #404040 #dfdfdf';
+      pauseBtn.style.borderColor = '#dfdfdf #404040 #404040 #dfdfdf';
+    }
+  }
+
+  // Visualizer setup
+  function startVisualizer() {
+    if (!audioContext) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioContext = new AudioContextClass();
+      const source = audioContext.createMediaElementAudioSource(audioPlayer);
+      analyser = audioContext.createAnalyser();
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
+      analyser.fftSize = 256;
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
+  }
+
+  function updateVisualizer() {
+    if (!analyser) return;
+
+    analyser.getByteFrequencyData(dataArray);
+
+    // Draw canvas visualizer
+    const ctx = visualizerCanvas.getContext('2d');
+    const width = visualizerCanvas.width;
+    const height = visualizerCanvas.height;
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = '#00ff00';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    const sliceWidth = width / dataArray.length;
+    let x = 0;
+
+    for (let i = 0; i < dataArray.length; i++) {
+      const v = dataArray[i] / 128.0;
+      const y = (v * height) / 2;
+
+      if (i === 0) {
+        ctx.moveTo(x, height - y);
+      } else {
+        ctx.lineTo(x, height - y);
+      }
+
+      x += sliceWidth;
+    }
+
+    ctx.lineTo(width, height);
+    ctx.stroke();
+
+    // Update bar visualizers
+    const barCount = visualizerBars.length;
+    const samplesPerBar = Math.floor(dataArray.length / barCount);
+
+    visualizerBars.forEach((bar, index) => {
+      const startIdx = index * samplesPerBar;
+      const endIdx = Math.min(startIdx + samplesPerBar, dataArray.length);
+
+      let sum = 0;
+      for (let i = startIdx; i < endIdx; i++) {
+        sum += dataArray[i];
+      }
+      const average = sum / (endIdx - startIdx);
+      const height = (average / 255) * 50 + 4;
+
+      bar.style.height = height + 'px';
+    });
+
+    if (isPlaying) {
+      requestAnimationFrame(updateVisualizer);
+    }
+  }
+
+  // Set initial volume
+  audioPlayer.volume = 0.8;
+</script>

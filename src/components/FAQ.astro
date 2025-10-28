@@ -1,0 +1,918 @@
+---
+// FAQ Section - Between ContributionCTA and GettingStarted
+---
+
+<section class="section-container bg-deep-space/50" id="faq">
+  <div class="max-w-5xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16 scroll-animate">
+      <div class="ascii-divider text-center mb-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+      <h2 class="text-3xl md:text-4xl font-mono font-bold gradient-text mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg text-slate-secondary mt-6">
+        Got questions? We've got answers. Can't find what you're looking for?
+        <br />
+        <a href="https://t.me/+pNKuDgtZ0H9lM2U0" target="_blank" rel="noopener noreferrer" class="text-solana-green hover:text-solana-purple transition-colors">
+          Ask in our community
+        </a>
+      </p>
+      <div class="ascii-divider text-center mt-6">
+        ═══════════════════════════════════════════════════════════
+      </div>
+    </div>
+
+    <!-- FAQ Grid -->
+    <div class="space-y-4 scroll-animate delay-200" id="faq-container">
+      <!-- Initial FAQ Items (Visible by default) -->
+      <div id="initial-faqs"></div>
+
+      <!-- Additional FAQ Items (Hidden initially) -->
+      <div id="additional-faqs" class="space-y-4 hidden" style="opacity: 0;">
+      </div>
+
+      <!-- Load More Button -->
+      <div id="load-more-container" class="mt-8 text-center">
+        <button id="load-more-btn" class="terminal-window hover:shadow-terminal-glow transition-all group hover:scale-105">
+          <div class="terminal-content flex items-center justify-center gap-2 py-3 px-6">
+            <span class="text-solana-green group-hover:text-solana-purple transition-colors">➜</span>
+            <span class="font-mono text-sm text-solana-green group-hover:text-solana-purple transition-colors">Load More Questions</span>
+            <span class="text-solana-green group-hover:text-solana-purple transition-colors">↓</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hidden container for all FAQ content -->
+    <template id="faq-template">
+      <!-- Getting Started -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What if I don't know Rust?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Perfect! You don't need to know Rust at all. SolCoder translates your plain English descriptions into Rust code automatically. Just describe what you want to build, and the AI handles the syntax.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="text-solana-green mb-2">Example:</div>
+            <div class="font-mono text-xs bg-deep-space/50 p-2 rounded mb-2">
+              > "Create a token with metadata and transfer logic"
+            </div>
+            <div class="text-slate-secondary">
+              ✓ Rust code generated
+              <br/>✓ Tests written
+              <br/>✓ Ready to deploy
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Installation & Setup -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > How long does setup take?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Installation takes about 3 minutes. SolCoder auto-detects what you're missing (Rust, Solana CLI, Node.js) and guides you through installation with one command.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="font-mono text-xs bg-deep-space/50 p-2 rounded">
+              $ solcoder --env setup
+              <br/>✓ Rust installed
+              <br/>✓ Solana CLI ready
+              <br/>✓ Node.js configured
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Security & Wallets -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Is my wallet safe with SolCoder?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Yes. We use PBKDF2 + AES-GCM encryption for keypairs stored locally on your machine. SolCoder never transmits private keys anywhere.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-3">Security features:</div>
+            <ul class="space-y-2">
+              <li>✓ Local-only wallet (no cloud sync)</li>
+              <li>✓ Spend limits per session</li>
+              <li>✓ Auto-confirmation prompts</li>
+              <li>✓ Full audit trail logging</li>
+              <li>✓ 100% overspend prevention</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- Deployment & Networks -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Where does my code deploy?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            By default, deployments go to Solana Devnet (free, for testing). When you're ready for production, you control where it deploys—Testnet or Mainnet.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-2">Network options:</div>
+            <ul class="space-y-1 font-mono text-xs">
+              <li>$ solcoder deploy --network devnet (default, free)</li>
+              <li>$ solcoder deploy --network testnet</li>
+              <li>$ solcoder deploy --network mainnet</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- Cost & Fees -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > How much does it cost?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            SolCoder itself is free forever (open source). You only pay Solana network fees:
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div class="flex justify-between">
+              <span>Devnet deploys:</span>
+              <span class="text-solana-green font-mono">Free (testnet)</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Mainnet transaction:</span>
+              <span class="text-solana-green font-mono">~0.00025 SOL</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Program deployment:</span>
+              <span class="text-solana-green font-mono">~0.25 SOL</span>
+            </div>
+            <p class="text-xs pt-2 border-t border-solana-green/20">
+              No subscription, no hidden fees, no revenue share on your code.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Code Ownership -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Do I own the code SolCoder generates?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            100% yes. You own all code generated. SolCoder runs locally on your machine. We don't store, analyze, or reuse any of your code.
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div>✓ Full source access</div>
+            <div>✓ Can modify/fork anytime</div>
+            <div>✓ No licensing restrictions</div>
+            <div>✓ No analytics tracking</div>
+            <div>✓ No telemetry (unless you opt-in)</div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Internet/Offline -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Do I need internet to use SolCoder?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            The AI agent runs offline on your machine. However, to deploy to Solana blockchain, you need internet (to reach the network).
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-2">Offline capabilities:</div>
+            <ul class="space-y-1">
+              <li>✓ Code generation (offline)</li>
+              <li>✓ Testing (offline)</li>
+              <li>✓ Building (offline)</li>
+              <li>✗ Deployment (requires network)</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- Limitations & Scope -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What can't SolCoder build?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            SolCoder excels at smart contracts but isn't a full-stack framework (yet). It focuses on on-chain logic.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-2">Current scope:</div>
+            <ul class="space-y-1">
+              <li>✓ Smart contracts (Anchor programs)</li>
+              <li>✓ Wallet interactions</li>
+              <li>✓ Token logic</li>
+              <li>✗ Front-end UIs (you build separately)</li>
+              <li>✗ Complex off-chain databases</li>
+            </ul>
+            <p class="text-xs pt-2 border-t border-solana-green/20 mt-2">
+              The generated code is Rust—you can extend it however you want.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Solana Knowledge -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Does SolCoder know Solana best practices?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Yes. SolCoder has an embedded knowledge base with Anchor patterns, SPL standards, Solana runtime docs, and security best practices.
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div class="mb-2">Knowledge base includes:</div>
+            <ul class="space-y-1">
+              <li>✓ Anchor framework patterns</li>
+              <li>✓ SPL token standards</li>
+              <li>✓ Program-derived addresses (PDAs)</li>
+              <li>✓ Account validation patterns</li>
+              <li>✓ Security gotchas & audits</li>
+            </ul>
+            <p class="text-xs pt-2 border-t border-solana-green/20">
+              This is powered by semantic search (FAISS) with zero external API calls.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Customization & Control -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Can I customize the generated code?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Absolutely. SolCoder generates human-readable Rust code. You can modify, extend, or completely refactor it. It's yours.
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div>Generated code includes:</div>
+            <ul class="space-y-1">
+              <li>✓ Well-documented Rust files</li>
+              <li>✓ Full test suite (80%+ coverage)</li>
+              <li>✓ README with examples</li>
+              <li>✓ CI/CD templates (GitHub Actions)</li>
+            </ul>
+            <p class="text-xs pt-2 border-t border-solana-green/20">
+              Continue conversations to refine or iterate on your program.
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Templates & Examples -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What templates are available?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            We maintain battle-tested templates for common patterns. More coming soon!
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-2">Available now:</div>
+            <ul class="space-y-1">
+              <li>✓ Counter (simple state)</li>
+              <li>✓ Token Mint (SPL standard)</li>
+              <li>✓ Basic Staking</li>
+            </ul>
+            <div class="mt-2 pt-2 border-t border-solana-green/20">Coming soon:</div>
+            <ul class="space-y-1">
+              <li>→ NFT Collection (with Metaplex)</li>
+              <li>→ DAO Voting</li>
+              <li>→ AMM Pool</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- Community & Support -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > How do I get help or report bugs?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            We're here to help! Multiple channels for support:
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div class="flex gap-2">
+              <span class="text-solana-green">→</span>
+              <a href="https://github.com/solcoder-xyz/solcoder/issues" target="_blank" rel="noopener noreferrer" class="hover:text-solana-purple transition-colors">
+                GitHub Issues (bugs & features)
+              </a>
+            </div>
+            <div class="flex gap-2">
+              <span class="text-solana-green">→</span>
+              <a href="https://t.me/+pNKuDgtZ0H9lM2U0" target="_blank" rel="noopener noreferrer" class="hover:text-solana-purple transition-colors">
+                Telegram Community (fast responses)
+              </a>
+            </div>
+            <div class="flex gap-2">
+              <span class="text-solana-green">→</span>
+              <span>Discord (coming soon)</span>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Roadmap & Future -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What's coming next?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Exciting things in the pipeline:
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div class="flex gap-2 items-start">
+              <span class="text-solana-green mt-1">🟢</span>
+              <div>
+                <div class="font-mono text-xs">Q4 2024: GUI Mode</div>
+                <div class="text-xs text-slate-tertiary">Web interface + IDE integrations</div>
+              </div>
+            </div>
+            <div class="flex gap-2 items-start">
+              <span class="text-solana-purple mt-1">🟣</span>
+              <div>
+                <div class="font-mono text-xs">Q1 2025: DePIN Inference</div>
+                <div class="text-xs text-slate-tertiary">Decentralized LLM calls, Solana-settled pricing</div>
+              </div>
+            </div>
+            <div class="flex gap-2 items-start">
+              <span class="text-solana-green mt-1">🟢</span>
+              <div>
+                <div class="font-mono text-xs">Q2 2025: SCR Token</div>
+                <div class="text-xs text-slate-tertiary">Native token for inference, staking, governance</div>
+              </div>
+            </div>
+            <div class="flex gap-2 items-start">
+              <span class="text-solana-purple mt-1">🟣</span>
+              <div>
+                <div class="font-mono text-xs">Q3 2025+: Agent Network</div>
+                <div class="text-xs text-slate-tertiary">Autonomous agents improving Solana ecosystem</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Open Source & Contribution -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > How can I contribute?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            We're 100% open source and love contributors! Many ways to help:
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div>💻 CODE</div>
+            <ul class="space-y-1 ml-4 text-xs">
+              <li>• Add new templates</li>
+              <li>• Improve agent prompts</li>
+              <li>• Build IDE integrations</li>
+            </ul>
+            <div class="mt-2">📚 DOCS</div>
+            <ul class="space-y-1 ml-4 text-xs">
+              <li>• Write tutorials</li>
+              <li>• Expand knowledge base</li>
+              <li>• Translate docs</li>
+            </ul>
+            <div class="mt-2">🧪 TEST</div>
+            <ul class="space-y-1 ml-4 text-xs">
+              <li>• Report bugs</li>
+              <li>• Submit edge cases</li>
+              <li>• Test deployments</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- License & Legal -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What's the license?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            SolCoder is MIT licensed. You can use it commercially, modify it, and distribute it freely.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="flex justify-between mb-2">
+              <span>License:</span>
+              <span class="text-solana-green">MIT (permissive)</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Generated code:</span>
+              <span class="text-solana-green">Yours to keep</span>
+            </div>
+            <p class="text-xs pt-2 border-t border-solana-green/20 mt-2">
+              <a href="/license" class="hover:text-solana-purple transition-colors">
+                View full license →
+              </a>
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Blockchain vs Local -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > Does SolCoder use blockchain to store anything?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            No. SolCoder runs entirely on your machine. Blockchain is only used when YOU deploy your program. We don't store any data on-chain.
+          </p>
+          <div class="text-sm text-slate-tertiary">
+            <div class="mb-2">Data locations:</div>
+            <ul class="space-y-1">
+              <li>✓ Code generation: Your machine (local)</li>
+              <li>✓ Session data: Your machine (local)</li>
+              <li>✓ Your code/wallets: Never uploaded</li>
+              <li>✗ No blockchain storage by SolCoder</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- LLM Details -->
+      <details class="group terminal-window cursor-pointer">
+        <summary class="terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors">
+          <div class="flex-1">
+            <div class="font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors">
+              > What LLM does SolCoder use?
+            </div>
+          </div>
+          <span class="text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0">
+            ▼
+          </span>
+        </summary>
+        <div class="terminal-content border-t border-solana-green/20 pt-4 mt-4">
+          <p class="text-slate-secondary mb-3">
+            Currently Claude (Anthropic). We're exploring decentralized inference options for Phase 2.
+          </p>
+          <div class="text-sm text-slate-tertiary space-y-2">
+            <div>Current stack:</div>
+            <ul class="space-y-1">
+              <li>✓ Claude for code generation</li>
+              <li>✓ Local embedding model for knowledge base</li>
+            </ul>
+            <div class="mt-2 pt-2 border-t border-solana-green/20">Future (Phase 2):</div>
+            <ul class="space-y-1">
+              <li>→ Option to use open-source models</li>
+              <li>→ Decentralized inference network</li>
+              <li>→ Solana-settled pricing</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </template>
+
+    <!-- Still Have Questions CTA -->
+    <div class="mt-12 text-center scroll-animate delay-300">
+      <p class="text-slate-secondary mb-4">
+        Didn't find your answer?
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="https://t.me/+pNKuDgtZ0H9lM2U0"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="terminal-window hover:shadow-terminal-glow transition-all group"
+        >
+          <div class="terminal-content flex items-center gap-2 py-3">
+            <span class="text-solana-green group-hover:text-solana-purple transition-colors">💬</span>
+            <span class="font-mono text-sm text-solana-green">Ask in Telegram</span>
+          </div>
+        </a>
+        <a
+          href="https://github.com/solcoder-xyz/solcoder/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="terminal-window hover:shadow-terminal-glow transition-all group"
+        >
+          <div class="terminal-content flex items-center gap-2 py-3">
+            <span class="text-solana-green group-hover:text-solana-purple transition-colors">🐙</span>
+            <span class="font-mono text-sm text-solana-green">GitHub Issues</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const INITIAL_ITEMS = 5;
+  const LOAD_MORE_ITEMS = 5;
+
+  // FAQ data structure
+  const faqData = [
+    {
+      title: "What if I don't know Rust?",
+      content: "Perfect! You don't need to know Rust at all. SolCoder translates your plain English descriptions into Rust code automatically. Just describe what you want to build, and the AI handles the syntax.\n\nExample:\n\"Create a token with metadata and transfer logic\"\n✓ Rust code generated\n✓ Tests written\n✓ Ready to deploy"
+    },
+    {
+      title: "How long does setup take?",
+      content: "Installation takes about 3 minutes. SolCoder auto-detects what you're missing (Rust, Solana CLI, Node.js) and guides you through installation with one command.\n\n$ solcoder --env setup\n✓ Rust installed\n✓ Solana CLI ready\n✓ Node.js configured"
+    },
+    {
+      title: "Is my wallet safe with SolCoder?",
+      content: "Yes. We use PBKDF2 + AES-GCM encryption for keypairs stored locally on your machine. SolCoder never transmits private keys anywhere.\n\nSecurity features:\n✓ Local-only wallet (no cloud sync)\n✓ Spend limits per session\n✓ Auto-confirmation prompts\n✓ Full audit trail logging\n✓ 100% overspend prevention"
+    },
+    {
+      title: "Where does my code deploy?",
+      content: "By default, deployments go to Solana Devnet (free, for testing). When you're ready for production, you control where it deploys—Testnet or Mainnet.\n\nNetwork options:\n$ solcoder deploy --network devnet (default, free)\n$ solcoder deploy --network testnet\n$ solcoder deploy --network mainnet"
+    },
+    {
+      title: "How much does it cost?",
+      content: "SolCoder itself is free forever (open source). You only pay Solana network fees:\n\nDevnet deploys: Free (testnet)\nMainnet transaction: ~0.00025 SOL\nProgram deployment: ~0.25 SOL\n\nNo subscription, no hidden fees, no revenue share on your code."
+    },
+    {
+      title: "Do I own the code SolCoder generates?",
+      content: "100% yes. You own all code generated. SolCoder runs locally on your machine. We don't store, analyze, or reuse any of your code.\n\n✓ Full source access\n✓ Can modify/fork anytime\n✓ No licensing restrictions\n✓ No analytics tracking\n✓ No telemetry (unless you opt-in)"
+    },
+    {
+      title: "Do I need internet to use SolCoder?",
+      content: "The AI agent runs offline on your machine. However, to deploy to Solana blockchain, you need internet (to reach the network).\n\nOffline capabilities:\n✓ Code generation (offline)\n✓ Testing (offline)\n✓ Building (offline)\n✗ Deployment (requires network)"
+    },
+    {
+      title: "What can't SolCoder build?",
+      content: "SolCoder excels at smart contracts but isn't a full-stack framework (yet). It focuses on on-chain logic.\n\nCurrent scope:\n✓ Smart contracts (Anchor programs)\n✓ Wallet interactions\n✓ Token logic\n✗ Front-end UIs (you build separately)\n✗ Complex off-chain databases\n\nThe generated code is Rust—you can extend it however you want."
+    },
+    {
+      title: "Does SolCoder know Solana best practices?",
+      content: "Yes. SolCoder has an embedded knowledge base with Anchor patterns, SPL standards, Solana runtime docs, and security best practices.\n\nKnowledge base includes:\n✓ Anchor framework patterns\n✓ SPL token standards\n✓ Program-derived addresses (PDAs)\n✓ Account validation patterns\n✓ Security gotchas & audits\n\nThis is powered by semantic search (FAISS) with zero external API calls."
+    },
+    {
+      title: "Can I customize the generated code?",
+      content: "Absolutely. SolCoder generates human-readable Rust code. You can modify, extend, or completely refactor it. It's yours.\n\nGenerated code includes:\n✓ Well-documented Rust files\n✓ Full test suite (80%+ coverage)\n✓ README with examples\n✓ CI/CD templates (GitHub Actions)\n\nContinue conversations to refine or iterate on your program."
+    },
+    {
+      title: "What templates are available?",
+      content: "We maintain battle-tested templates for common patterns. More coming soon!\n\nAvailable now:\n✓ Counter (simple state)\n✓ Token Mint (SPL standard)\n✓ Basic Staking\n\nComing soon:\n→ NFT Collection (with Metaplex)\n→ DAO Voting\n→ AMM Pool"
+    },
+    {
+      title: "How do I get help or report bugs?",
+      content: "We're here to help! Multiple channels for support:\n\n→ GitHub Issues (bugs & features)\n→ Telegram Community (fast responses)\n→ Discord (coming soon)"
+    },
+    {
+      title: "What's coming next?",
+      content: "Exciting things in the pipeline:\n\n🟢 Q4 2024: GUI Mode - Web interface + IDE integrations\n🟣 Q1 2025: DePIN Inference - Decentralized LLM calls, Solana-settled pricing\n🟢 Q2 2025: SCR Token - Native token for inference, staking, governance\n🟣 Q3 2025+: Agent Network - Autonomous agents improving Solana ecosystem"
+    },
+    {
+      title: "How can I contribute?",
+      content: "We're 100% open source and love contributors! Many ways to help:\n\n💻 CODE\n• Add new templates\n• Improve agent prompts\n• Build IDE integrations\n\n📚 DOCS\n• Write tutorials\n• Expand knowledge base\n• Translate docs\n\n🧪 TEST\n• Report bugs\n• Submit edge cases\n• Test deployments"
+    },
+    {
+      title: "What's the license?",
+      content: "SolCoder is MIT licensed. You can use it commercially, modify it, and distribute it freely.\n\nLicense: MIT (permissive)\nGenerated code: Yours to keep\n\nView full license →"
+    },
+    {
+      title: "Does SolCoder use blockchain to store anything?",
+      content: "No. SolCoder runs entirely on your machine. Blockchain is only used when YOU deploy your program. We don't store any data on-chain.\n\nData locations:\n✓ Code generation: Your machine (local)\n✓ Session data: Your machine (local)\n✓ Your code/wallets: Never uploaded\n✗ No blockchain storage by SolCoder"
+    },
+    {
+      title: "What LLM does SolCoder use?",
+      content: "Currently Claude (Anthropic). We're exploring decentralized inference options for Phase 2.\n\nCurrent stack:\n✓ Claude for code generation\n✓ Local embedding model for knowledge base\n\nFuture (Phase 2):\n→ Option to use open-source models\n→ Decentralized inference network\n→ Solana-settled pricing"
+    }
+  ];
+
+  function createFAQElement(title: string, content: string): HTMLElement {
+    const div = document.createElement('details');
+    div.className = 'group terminal-window cursor-pointer';
+    div.style.marginBottom = '1rem';
+
+    const summary = document.createElement('summary');
+    summary.className = 'terminal-content flex items-start gap-4 py-4 justify-between hover:bg-deep-space/80 transition-colors';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'flex-1';
+    const titleSpan = document.createElement('div');
+    titleSpan.className = 'font-mono font-bold text-solana-green group-open:text-solana-purple transition-colors';
+    titleSpan.textContent = '> ' + title;
+    titleDiv.appendChild(titleSpan);
+
+    const arrowSpan = document.createElement('span');
+    arrowSpan.className = 'text-solana-green text-xl group-open:rotate-180 transition-transform flex-shrink-0';
+    arrowSpan.textContent = '▼';
+
+    summary.appendChild(titleDiv);
+    summary.appendChild(arrowSpan);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'terminal-content border-t border-solana-green/20 pt-4 mt-4';
+    contentDiv.innerHTML = `<p class="text-slate-secondary">${content.replace(/\n/g, '<br>')}</p>`;
+
+    div.appendChild(summary);
+    div.appendChild(contentDiv);
+
+    return div;
+  }
+
+  function createLoadingPlaceholder(title: string): HTMLElement {
+    const div = document.createElement('div');
+    div.className = 'group terminal-window cursor-pointer';
+    div.style.marginBottom = '1rem';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'terminal-content py-4 px-4';
+
+    const titleSpan = document.createElement('div');
+    titleSpan.className = 'font-mono font-bold text-solana-green mb-3';
+    titleSpan.textContent = '> ' + title;
+    titleDiv.appendChild(titleSpan);
+
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'font-mono text-xs text-solana-green';
+
+    const progressBar = document.createElement('div');
+    progressBar.className = 'loading-bar';
+    progressBar.textContent = '[░░░░░░░░░░░░░░░░░░░░] 0%';
+    progressContainer.appendChild(progressBar);
+
+    titleDiv.appendChild(progressContainer);
+    div.appendChild(titleDiv);
+
+    return div;
+  }
+
+  function animateProgressBar(element: HTMLElement, duration: number = 800): Promise<void> {
+    return new Promise(resolve => {
+      let progress = 0;
+      const startTime = Date.now();
+      const barChars = '█';
+      const emptyChars = '░';
+      const totalChars = 20;
+
+      const animateFrame = () => {
+        const elapsed = Date.now() - startTime;
+        progress = Math.min((elapsed / duration) * 100, 100);
+        const filledChars = Math.floor((progress / 100) * totalChars);
+        const emptyCount = totalChars - filledChars;
+
+        const bar = barChars.repeat(filledChars) + emptyChars.repeat(emptyCount);
+        element.textContent = `[${bar}] ${Math.floor(progress)}%`;
+
+        if (progress < 100) {
+          requestAnimationFrame(animateFrame);
+        } else {
+          resolve();
+        }
+      };
+
+      animateFrame();
+    });
+  }
+
+  function displayFAQs(items: typeof faqData, containerId: string) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '';
+    items.forEach(item => {
+      const element = createFAQElement(item.title, item.content);
+      container.appendChild(element);
+    });
+  }
+
+  function initializeFAQ() {
+    const initialContainer = document.getElementById('initial-faqs');
+    const additionalContainer = document.getElementById('additional-faqs');
+    const loadMoreBtn = document.getElementById('load-more-btn') as HTMLButtonElement | null;
+
+    if (!initialContainer || !additionalContainer || !loadMoreBtn) return;
+
+    // Display initial FAQs
+    displayFAQs(faqData.slice(0, INITIAL_ITEMS), 'initial-faqs');
+
+    let currentIndex = INITIAL_ITEMS;
+    let isLoading = false;
+
+    loadMoreBtn.addEventListener('click', async () => {
+      if (isLoading) return;
+
+      isLoading = true;
+      loadMoreBtn.disabled = true;
+
+      // Simulate network delay for effect
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Get next batch of FAQs
+      const nextBatch = faqData.slice(currentIndex, currentIndex + LOAD_MORE_ITEMS);
+
+      if (nextBatch.length > 0) {
+        // Show the additional FAQs container if hidden
+        if (additionalContainer.classList.contains('hidden')) {
+          additionalContainer.classList.remove('hidden');
+          additionalContainer.style.opacity = '0';
+          requestAnimationFrame(() => {
+            additionalContainer.style.transition = 'opacity 0.5s ease-in-out';
+            additionalContainer.style.opacity = '1';
+          });
+        }
+
+        // Load each FAQ sequentially with progress bar animation
+        for (let i = 0; i < nextBatch.length; i++) {
+          const item = nextBatch[i];
+
+          // Create loading placeholder
+          const loadingPlaceholder = createLoadingPlaceholder(item.title);
+          additionalContainer.appendChild(loadingPlaceholder);
+
+          // Find the progress bar element
+          const progressBar = loadingPlaceholder.querySelector('.loading-bar') as HTMLElement;
+
+          // Animate the progress bar
+          await animateProgressBar(progressBar, 800);
+
+          // Remove loading placeholder and add actual FAQ
+          additionalContainer.removeChild(loadingPlaceholder);
+
+          // Create and add the actual FAQ element
+          const element = createFAQElement(item.title, item.content);
+          element.style.opacity = '0';
+          additionalContainer.appendChild(element);
+
+          // Trigger fade-in
+          requestAnimationFrame(() => {
+            element.style.transition = 'opacity 0.5s ease-in-out';
+            element.style.opacity = '1';
+          });
+
+          // Small delay between items (200ms)
+          if (i < nextBatch.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 200));
+          }
+        }
+
+        currentIndex += LOAD_MORE_ITEMS;
+
+        // Hide load more button if all FAQs loaded
+        if (currentIndex >= faqData.length) {
+          loadMoreBtn.style.opacity = '0';
+          loadMoreBtn.style.pointerEvents = 'none';
+          loadMoreBtn.disabled = true;
+        }
+      }
+
+      isLoading = false;
+      loadMoreBtn.disabled = false;
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeFAQ);
+  } else {
+    initializeFAQ();
+  }
+</script>
+
+<style>
+  details {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 1rem;
+  }
+
+  details[open] {
+    box-shadow: 0 0 20px rgba(20, 241, 149, 0.1);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    list-style: none;
+  }
+</style>

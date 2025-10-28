@@ -306,6 +306,13 @@
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Parallax Effect Styles */
+[data-parallax] {
+  will-change: transform;
+  transform: translateY(0px);
+  transition: transform 0.1s linear;
+}
+
 /* Disable all animations when reduced motion is preferred */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -319,5 +326,10 @@
   .scroll-animate {
     opacity: 1;
     transform: none;
+  }
+
+  /* Disable parallax effect when reduced motion is preferred */
+  [data-parallax] {
+    transform: translateY(0px) !important;
   }
 }
